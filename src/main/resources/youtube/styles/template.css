@@ -1,0 +1,95 @@
+// Containing Styles for Top Nav and Left Menu
+
+#youtubeIconBtn{
+    -fx-background-color: transparent;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: color1;
+}
+
+#topNav{
+    -fx-padding: 10;
+    -fx-background-color: bg1;
+
+}
+
+.menuBtn{
+    -fx-background-color: transparent;
+    -fx-font-size: 16px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-background-radius: 15px;
+    -fx-text-fill: color1;
+}
+.menuBtn:hover, .menuBtnMin:hover {
+    -fx-background-color: hoverBG;
+}
+.menuBtn > SVGPath, .menuBtnMin > SVGPath  {
+    -fx-fill: transparent;
+    -fx-stroke: svgColor;
+    -fx-stroke-type: inside;
+}
+.selected {
+    -fx-font-weight: bold;
+    -fx-background-color: hoverBG;
+}
+.selected > SVGPath {
+    -fx-fill: svgColor;
+}
+.menuBtnMin {
+    -fx-background-color: transparent;
+    -fx-font-size: 9px;
+    -fx-alignment: CENTER;
+    -fx-background-radius: 10px;
+    -fx-text-fill: color1;
+    -fx-padding: 10px 2px;
+}
+
+.leftPanelContainer{
+    -fx-spacing: 10px;
+    -fx-padding: 5;
+    -fx-background-color: bg1;
+}
+
+#searchBar {
+    -fx-padding: 0 20;
+    -fx-alignment: center;
+}
+
+#searchBar > TextField{
+    -fx-pref-width: 400px;
+    -fx-pref-height: 40px;
+    -fx-background-color: searchBG;
+    -fx-font-size: 16px;
+    -fx-text-fill: color1;
+    -fx-background-radius: 40 0 0 40;
+    -fx-padding: 2px 10px;
+    -fx-border-color: searchBorderColor;
+    -fx-border-width: 1px;
+    -fx-border-radius: 40 0 0 40;
+}
+#searchBar > Button{
+    -fx-background-color: searchBtnBgColor;
+    -fx-font-size: 16px;
+    -fx-pref-height: 40px;
+    -fx-background-radius: 0 40 40 0;
+    -fx-padding: 2px 10px;
+    -fx-border-color: searchBorderColor;
+    -fx-border-width: 1px;
+    -fx-border-radius: 0 40 40 0;
+}
+#searchBar > Button > SVGPath {
+    -fx-fill: transparent;
+    -fx-stroke: svgColor;
+}
+
+#signInBtn{
+    -fx-font-size: 14px;
+    -fx-text-fill: blue;
+    -fx-font-weight: bold;
+    -fx-border-color: #e5e5e5;
+    -fx-border-width: 1px;
+    -fx-border-radius: 40;
+    -fx-pref-height: 40px;
+    -fx-padding: 10px;
+}
+

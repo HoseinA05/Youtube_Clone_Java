@@ -1,0 +1,21 @@
+Button {
+    -fx-cursor: hand;
+}
+
+#videoBox{
+    -fx-background-color: transparent;
+}
+
+#scrollpane, #scrollpane > .viewport{
+    -fx-background-color: bg1;
+}
+
+.videoTitle{
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: color1;
+}
+.videoInfo{
+    -fx-text-fill: color2;
+    -fx-font-size: 12px;
+}
