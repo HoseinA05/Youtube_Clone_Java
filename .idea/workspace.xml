@@ -4,18 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c7c77138-5c2b-4709-bd3f-716ccf2d3bb2" name="Changes" comment="Init Commit">
-      <change afterPath="$PROJECT_DIR$/src/main/java/youtube/HomepageController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/youtube/homepage.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/youtube/styles/dark-theme.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/youtube/styles/homepage.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/youtube/styles/light-theme.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/youtube/styles/template.css" afterDir="false" />
+    <list default="true" id="c7c77138-5c2b-4709-bd3f-716ccf2d3bb2" name="Changes" comment="Completed Homepage Design">
+      <change afterPath="$PROJECT_DIR$/src/main/java/youtube/SigninController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/youtube/SignupController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/youtube/signin.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/youtube/signup.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/youtube/styles/signup.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/youtube/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/youtube/YoutubeApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/youtube/HelloController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/youtube/hello-view.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/youtube/YoutubeApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/youtube/YoutubeApplication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +21,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -54,18 +51,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.HelloApplication.executor": "Run",
-    "Application.YoutubeApplication.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "frontend",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/boys/Hosein/University/Term2/AP/09_AP-Final-Project/Youtube_Clone_Java/src/main/resources"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.YoutubeApplication.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;frontend&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;D:/boys/Hosein/University/Term2/AP/09_AP-Final-Project/Youtube_Clone_Java/src/main/java/youtube&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/boys/Hosein/University/Term2/AP/09_AP-Final-Project/Youtube_Clone_Java/src/main/resources&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\boys\Hosein\University\Term2\AP\09_AP-Final-Project\Youtube_Clone_Java\src\main\resources" />
@@ -120,7 +118,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718024778758</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Completed Homepage Design">
+      <option name="closed" value="true" />
+      <created>1718565670367</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1718565670367</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -159,6 +165,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Init Commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Init Commit" />
+    <MESSAGE value="Completed Homepage Design" />
+    <option name="LAST_COMMIT_MESSAGE" value="Completed Homepage Design" />
   </component>
 </project>
