@@ -4,14 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c7c77138-5c2b-4709-bd3f-716ccf2d3bb2" name="Changes" comment="Completed Homepage Design">
-      <change afterPath="$PROJECT_DIR$/src/main/java/youtube/SigninController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/youtube/SignupController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/youtube/signin.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/youtube/signup.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/youtube/styles/signup.css" afterDir="false" />
+    <list default="true" id="c7c77138-5c2b-4709-bd3f-716ccf2d3bb2" name="Changes" comment="Designed Basic Template for sign in and sign up">
+      <change afterPath="$PROJECT_DIR$/src/main/java/youtube/VideopageController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/youtube/styles/videopage.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/youtube/videopage.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/youtube/YoutubeApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/youtube/YoutubeApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/youtube/homepage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/youtube/homepage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/youtube/styles/dark-theme.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/youtube/styles/dark-theme.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/youtube/styles/light-theme.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/youtube/styles/light-theme.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/youtube/styles/template.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/youtube/styles/template.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,11 +65,15 @@
     &quot;git-widget-placeholder&quot;: &quot;frontend&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_directory_selection&quot;: &quot;D:/boys/Hosein/University/Term2/AP/09_AP-Final-Project/Youtube_Clone_Java/src/main/java/youtube&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/boys/Hosein/University/Term2/AP/09_AP-Final-Project/Youtube_Clone_Java/src/main/resources&quot;
+    &quot;last_opened_file_path&quot;: &quot;D:/boys/Hosein/University/Term2/AP/09_AP-Final-Project/Youtube_Clone_Java/src/main/resources/youtube&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Global Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\boys\Hosein\University\Term2\AP\09_AP-Final-Project\Youtube_Clone_Java\src\main\resources\youtube" />
       <recent name="D:\boys\Hosein\University\Term2\AP\09_AP-Final-Project\Youtube_Clone_Java\src\main\resources" />
       <recent name="D:\boys\Hosein\University\Term2\AP\09_AP-Final-Project\Youtube_Clone_Java\src\main\resources\img" />
       <recent name="D:\boys\Hosein\University\Term2\AP\09_AP-Final-Project\Youtube_Clone_Java\src\main\resources\css" />
@@ -126,7 +134,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718565670367</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Designed Basic Template for sign in and sign up">
+      <option name="closed" value="true" />
+      <created>1718604295966</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1718604295966</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -166,6 +182,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Init Commit" />
     <MESSAGE value="Completed Homepage Design" />
-    <option name="LAST_COMMIT_MESSAGE" value="Completed Homepage Design" />
+    <MESSAGE value="Designed Basic Template for sign in and sign up" />
+    <option name="LAST_COMMIT_MESSAGE" value="Designed Basic Template for sign in and sign up" />
   </component>
 </project>
