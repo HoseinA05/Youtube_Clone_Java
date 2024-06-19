@@ -11,6 +11,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.SVGPath;
+import javafx.stage.Stage;
 
 public class VideopageController {
 
@@ -36,9 +37,11 @@ public class VideopageController {
     public Button repliesBtn;
     @FXML
     public SVGPath repliesSvg;
+    private boolean isDarkmode = false;
     private final String darkTheme = getClass().getResource("styles/dark-theme.css").toExternalForm();
     private final String lightTheme = getClass().getResource("styles/light-theme.css").toExternalForm();
 
+    @FXML
     public void initialize() {
         // Don't show left panel by default in video page.
         leftPanelMin.setVisible(false);
@@ -91,6 +94,20 @@ public class VideopageController {
 
     }
 
+    public void setTheme(boolean isDarkmode){
+        this.isDarkmode = isDarkmode;
+    }
+
+
+    @FXML
+    public void homeBtnHandler(ActionEvent actionEvent) {
+        Navigator.gotoHomePage((Stage) (leftPanelMin).getScene().getWindow(), isDarkmode);
+    }
+    @FXML
+    public void signinBtnHandler(ActionEvent actionEvent) {
+        Navigator.gotoSigninPage((Stage) (leftPanelMin).getScene().getWindow(), isDarkmode);
+    }
+    
     @FXML
     public void repliesBtnHandler(ActionEvent actionEvent) {
         String downArrowSvg = "m18 9.28-6.35 6.35-6.37-6.35.72-.71 5.64 5.65 5.65-5.65z";
@@ -107,9 +124,11 @@ public class VideopageController {
     @FXML
     public void toggleTheme(ActionEvent actionEvent) {
         if (leftPanelMin.getScene().getStylesheets().contains(darkTheme)){
+            isDarkmode = false;
             leftPanelMin.getScene().getStylesheets().remove(darkTheme);
             leftPanelMin.getScene().getStylesheets().add(lightTheme);
         }else {
+            isDarkmode = true;
             leftPanelMin.getScene().getStylesheets().remove(lightTheme);
             leftPanelMin.getScene().getStylesheets().add(darkTheme);
         }

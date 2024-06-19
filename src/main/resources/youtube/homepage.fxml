@@ -53,7 +53,7 @@
             </Button>
 
             <!-- Sign in -->
-            <Button id="signInBtn" graphicTextGap="10" text="Sign in">
+            <Button id="signInBtn" graphicTextGap="10" text="Sign in" onAction="#signinBtnHandler">
                 <graphic>
                     <SVGPath fill="#3ea6ff" content="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 1c4.96 0 9 4.04 9 9 0 1.42-.34 2.76-.93 3.96-1.53-1.72-3.98-2.89-7.38-3.03A3.996 3.996 0 0016 9c0-2.21-1.79-4-4-4S8 6.79 8 9c0 1.97 1.43 3.6 3.31 3.93-3.4.14-5.85 1.31-7.38 3.03C3.34 14.76 3 13.42 3 12c0-4.96 4.04-9 9-9zM9 9c0-1.65 1.35-3 3-3s3 1.35 3 3-1.35 3-3 3-3-1.35-3-3zm3 12c-3.16 0-5.94-1.64-7.55-4.12C6.01 14.93 8.61 13.9 12 13.9c3.39 0 5.99 1.03 7.55 2.98C17.94 19.36 15.16 21 12 21z"/>
                 </graphic>
@@ -113,7 +113,7 @@
             <TilePane fx:id="tilePane" hgap="35" prefColumns="3" style="-fx-padding: 20;" vgap="30">
 
                 <!-- Video Item -->
-                <VBox id="videoBox" spacing="10" styleClass="videoBox" prefWidth="320">
+                <VBox id="videoBox" spacing="10" styleClass="videoBox" prefWidth="320" onMouseClicked="#videoClickHandler">
 
                     <ImageView fx:id="img" fitWidth="320" fitHeight="180" preserveRatio="true">
                         <Image url="@testImg.jpg" />
@@ -121,7 +121,7 @@
 
                     <HBox spacing="10">
 
-                        <ImageView styleClass="profileImage" fx:id="profImg" fitWidth="40" fitHeight="40">
+                        <ImageView styleClass="profileImage" fx:id="profImg" fitWidth="40" fitHeight="40" onMouseClicked="#channelpageHandler">
                             <Image url="@testImg.jpg" />
                             <HBox.margin>
                                 <Insets top="5.0" />
@@ -130,7 +130,7 @@
 
                         <VBox>
                             <Label styleClass="videoTitle" wrapText="true" text="Video Title Video Title Video Title Video Title Video Title" />
-                            <Label styleClass="videoInfo" text="The Hossein" />
+                            <Label styleClass="videoInfo" text="The Hossein" onMouseClicked="#channelpageHandler"/>
                             <Label styleClass="videoInfo" text="1M views • 1 year ago" />
                         </VBox>
 

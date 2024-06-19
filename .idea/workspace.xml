@@ -4,11 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c7c77138-5c2b-4709-bd3f-716ccf2d3bb2" name="Changes" comment="Designed Basic Template for Playlist Page">
-      <change afterPath="$PROJECT_DIR$/src/main/java/youtube/DashboardpageController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/youtube/dashboardpage.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/youtube/styles/dashboardpage.css" afterDir="false" />
+    <list default="true" id="c7c77138-5c2b-4709-bd3f-716ccf2d3bb2" name="Changes" comment="Created Dashboardpage (Design for later)">
+      <change afterPath="$PROJECT_DIR$/src/main/java/youtube/Navigator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/youtube/ChannelpageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/youtube/ChannelpageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/youtube/HomepageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/youtube/HomepageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/youtube/SigninController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/youtube/SigninController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/youtube/SignupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/youtube/SignupController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/youtube/VideopageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/youtube/VideopageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/youtube/YoutubeApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/youtube/YoutubeApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/youtube/channelpage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/youtube/channelpage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/youtube/homepage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/youtube/homepage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/youtube/signin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/youtube/signin.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/youtube/signup.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/youtube/signup.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/youtube/videopage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/youtube/videopage.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +168,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718807935358</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Created Dashboardpage (Design for later)">
+      <option name="closed" value="true" />
+      <created>1718811342238</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1718811342238</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -203,6 +220,7 @@
     <MESSAGE value="Designed Basic Template for Video Page" />
     <MESSAGE value="Designed Basic Template for Channel Page" />
     <MESSAGE value="Designed Basic Template for Playlist Page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Designed Basic Template for Playlist Page" />
+    <MESSAGE value="Created Dashboardpage (Design for later)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created Dashboardpage (Design for later)" />
   </component>
 </project>
