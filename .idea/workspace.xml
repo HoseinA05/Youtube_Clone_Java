@@ -4,18 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c7c77138-5c2b-4709-bd3f-716ccf2d3bb2" name="Changes" comment="Designed Basic Template for sign in and sign up">
-      <change afterPath="$PROJECT_DIR$/src/main/java/youtube/VideopageController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/youtube/styles/videopage.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/youtube/videopage.fxml" afterDir="false" />
+    <list default="true" id="c7c77138-5c2b-4709-bd3f-716ccf2d3bb2" name="Changes" comment="Designed Basic Template for Video Page">
+      <change afterPath="$PROJECT_DIR$/src/main/java/youtube/ChannelpageController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/youtube/ImageViewPane.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/youtube/channelpage.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/youtube/styles/channelpage.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/youtube/HomepageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/youtube/HomepageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/youtube/YoutubeApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/youtube/YoutubeApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/youtube/homepage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/youtube/homepage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/youtube/styles/dark-theme.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/youtube/styles/dark-theme.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/youtube/styles/light-theme.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/youtube/styles/light-theme.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/youtube/styles/template.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/youtube/styles/template.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/youtube/videopage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/youtube/videopage.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,7 +139,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718604295966</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Designed Basic Template for Video Page">
+      <option name="closed" value="true" />
+      <created>1718782875901</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1718782875901</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -183,6 +188,7 @@
     <MESSAGE value="Init Commit" />
     <MESSAGE value="Completed Homepage Design" />
     <MESSAGE value="Designed Basic Template for sign in and sign up" />
-    <option name="LAST_COMMIT_MESSAGE" value="Designed Basic Template for sign in and sign up" />
+    <MESSAGE value="Designed Basic Template for Video Page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Designed Basic Template for Video Page" />
   </component>
 </project>

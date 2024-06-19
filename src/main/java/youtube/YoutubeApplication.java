@@ -11,10 +11,10 @@ public class YoutubeApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         // FXMLLoader fxmlLoader = new FXMLLoader(YoutubeApplication.class.getResource("homepage.fxml"));
-        FXMLLoader fxmlLoader = new FXMLLoader(YoutubeApplication.class.getResource("videopage.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(YoutubeApplication.class.getResource("channelpage.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1200, 600);
         // scene.getStylesheets().addAll(getClass().getResource("styles/template.css").toExternalForm(), getClass().getResource("styles/homepage.css").toExternalForm(), getClass().getResource("styles/dark-theme.css").toExternalForm());
-        scene.getStylesheets().addAll(getClass().getResource("styles/videopage.css").toExternalForm(), getClass().getResource("styles/template.css").toExternalForm(), getClass().getResource("styles/light-theme.css").toExternalForm());
+        scene.getStylesheets().addAll(getClass().getResource("styles/channelpage.css").toExternalForm(), getClass().getResource("styles/template.css").toExternalForm(), getClass().getResource("styles/light-theme.css").toExternalForm());
         stage.setTitle("Youtube");
         stage.setScene(scene);
         stage.show();
