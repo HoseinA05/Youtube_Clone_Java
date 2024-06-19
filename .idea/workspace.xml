@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c7c77138-5c2b-4709-bd3f-716ccf2d3bb2" name="Changes" comment="Designed Basic Template for Channel Page">
-      <change afterPath="$PROJECT_DIR$/src/main/java/youtube/PlaylistpageController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/youtube/playlistpage.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/youtube/styles/playlistpage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="c7c77138-5c2b-4709-bd3f-716ccf2d3bb2" name="Changes" comment="Designed Basic Template for Playlist Page">
+      <change afterPath="$PROJECT_DIR$/src/main/java/youtube/DashboardpageController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/youtube/dashboardpage.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/youtube/styles/dashboardpage.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/youtube/YoutubeApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/youtube/YoutubeApplication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -152,7 +151,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718802269151</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Designed Basic Template for Playlist Page">
+      <option name="closed" value="true" />
+      <created>1718807935358</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1718807935358</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -195,6 +202,7 @@
     <MESSAGE value="Designed Basic Template for sign in and sign up" />
     <MESSAGE value="Designed Basic Template for Video Page" />
     <MESSAGE value="Designed Basic Template for Channel Page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Designed Basic Template for Channel Page" />
+    <MESSAGE value="Designed Basic Template for Playlist Page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Designed Basic Template for Playlist Page" />
   </component>
 </project>
