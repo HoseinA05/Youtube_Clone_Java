@@ -1,8 +1,5 @@
 module sbu.cs.youtube {
-    requires javafx.controls;
-    requires javafx.fxml;
+    requires org.json;
 
 
-    opens youtube to javafx.fxml;
-    exports youtube;
 }
