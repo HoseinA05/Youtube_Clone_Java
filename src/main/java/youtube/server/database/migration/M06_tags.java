@@ -1,4 +1,4 @@
-package youtube.server.migration;
+package youtube.server.database.migration;
 
 public class M06_tags implements MigrationInterface {
     @Override
@@ -14,6 +14,6 @@ public class M06_tags implements MigrationInterface {
 
     @Override
     public String getDropQuery() {
-        return "DROP TABLE IF NOT EXISTS tags;";
+        return "DROP TABLE IF EXISTS tags;";
     }
 }

@@ -1,4 +1,4 @@
-package youtube.server.migration;
+package youtube.server.database.migration;
 
 public class M08_followings implements MigrationInterface {
     @Override
@@ -18,6 +18,6 @@ public class M08_followings implements MigrationInterface {
 
     @Override
     public String getDropQuery() {
-        return "DROP TABLE IF NOT EXISTS followings;";
+        return "DROP TABLE IF EXISTS followings;";
     }
 }

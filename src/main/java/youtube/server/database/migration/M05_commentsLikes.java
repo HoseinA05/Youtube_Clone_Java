@@ -1,4 +1,4 @@
-package youtube.server.migration;
+package youtube.server.database.migration;
 
 public class M05_commentsLikes implements MigrationInterface {
 
@@ -20,6 +20,6 @@ public class M05_commentsLikes implements MigrationInterface {
 
     @Override
     public String getDropQuery() {
-        return "DROP TABLE IF NOT EXISTS comments_likes;";
+        return "DROP TABLE IF EXISTS comments_likes;";
     }
 }

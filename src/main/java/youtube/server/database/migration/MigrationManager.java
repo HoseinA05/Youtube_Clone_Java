@@ -1,4 +1,4 @@
-package youtube.server.migration;
+package youtube.server.database.migration;
 
 import youtube.server.database.DbManager;
 
@@ -46,10 +46,10 @@ public class MigrationManager {
     }
 
     public static void dropAllTables(){
-        for (int i = 0; i < ms.length; i++) {
-            String query =  ms[i].getDropQuery();
+        for (int i = ms.length-1; i >= 0; i--) {
+            String query = ms[i].getDropQuery();
 
-            System.out.println("migrating " + names[i]);
+            System.out.println("droping " + names[i]);
             try {
                 DbManager.db().createStatement().execute(query);
             } catch (SQLException e) {
@@ -59,6 +59,7 @@ public class MigrationManager {
     }
 
     public static void main(String[] args) {
+//        MigrationManager.dropAllTables();
         MigrationManager.migrateAllTables();
     }
 }

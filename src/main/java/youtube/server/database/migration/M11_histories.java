@@ -1,4 +1,4 @@
-package youtube.server.migration;
+package youtube.server.database.migration;
 
 public class M11_histories implements MigrationInterface {
     @Override
@@ -17,6 +17,6 @@ public class M11_histories implements MigrationInterface {
 
     @Override
     public String getDropQuery() {
-        return "DROP TABLE IF NOT EXISTS histories;";
+        return "DROP TABLE IF EXISTS histories;";
     }
 }

@@ -1,4 +1,4 @@
-package youtube.server.migration;
+package youtube.server.database.migration;
 
 public class M10_playlistVideos implements MigrationInterface {
     @Override
@@ -19,6 +19,6 @@ public class M10_playlistVideos implements MigrationInterface {
 
     @Override
     public String getDropQuery() {
-        return "DROP TABLE IF NOT EXISTS playlist_videos;\n";
+        return "DROP TABLE IF EXISTS playlist_videos;\n";
     }
 }
