@@ -9,7 +9,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.TextField?>
 
-<BorderPane prefHeight="600" prefWidth="1200" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="youtube.DashboardpageController">
+<!--<BorderPane prefHeight="600" prefWidth="1200" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="youtube.client.controllers.DashboardpageController">-->
+<BorderPane prefHeight="600" prefWidth="1200" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
     <!-- Top navigation bar -->
     <top>
         <HBox id="topNav" alignment="CENTER_LEFT" spacing="10">

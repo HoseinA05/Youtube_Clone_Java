@@ -1,4 +1,4 @@
-package youtube;
+package youtube.client.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +12,9 @@ import javafx.scene.media.MediaView;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.SVGPath;
 import javafx.stage.Stage;
+import youtube.YoutubeApplication;
+import youtube.client.DataService;
+import youtube.client.Navigator;
 
 public class VideopageController {
 
@@ -37,9 +40,17 @@ public class VideopageController {
     public Button repliesBtn;
     @FXML
     public SVGPath repliesSvg;
+
+    private DataService dataService;
+
     private boolean isDarkmode = false;
-    private final String darkTheme = getClass().getResource("styles/dark-theme.css").toExternalForm();
-    private final String lightTheme = getClass().getResource("styles/light-theme.css").toExternalForm();
+    private final String darkTheme = YoutubeApplication.class.getResource("styles/dark-theme.css").toExternalForm();
+    private final String lightTheme = YoutubeApplication.class.getResource("styles/light-theme.css").toExternalForm();
+
+    public VideopageController(DataService dataService, boolean isDarkmode){
+        this.dataService = dataService;
+        this.isDarkmode = isDarkmode;
+    }
 
     @FXML
     public void initialize() {
@@ -78,12 +89,12 @@ public class VideopageController {
         repliedUserProfImg.setClip(clip6);
 
         // Set up the MediaView
-        Media media = new Media(getClass().getResource("test.mp4").toExternalForm()); // Replace with your video file
+        Media media = new Media(YoutubeApplication.class.getResource("test.mp4").toExternalForm()); // Replace with your video file
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaView.setMediaPlayer(mediaPlayer);
 
         // Play the video (for demonstration purposes)
-        mediaPlayer.setAutoPlay(false);
+        mediaPlayer.setAutoPlay(true);
 
         // Making Video Rounded
         Rectangle clip2 = new Rectangle(mediaView.getFitWidth(), mediaView.getFitHeight());
@@ -101,11 +112,11 @@ public class VideopageController {
 
     @FXML
     public void homeBtnHandler(ActionEvent actionEvent) {
-        Navigator.gotoHomePage((Stage) (leftPanelMin).getScene().getWindow(), isDarkmode);
+        Navigator.gotoHomePage((Stage) (leftPanelMin).getScene().getWindow(), dataService, isDarkmode);
     }
     @FXML
     public void signinBtnHandler(ActionEvent actionEvent) {
-        Navigator.gotoSigninPage((Stage) (leftPanelMin).getScene().getWindow(), isDarkmode);
+        Navigator.gotoSigninPage((Stage) (leftPanelMin).getScene().getWindow(), dataService, isDarkmode);
     }
     
     @FXML

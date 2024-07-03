@@ -1,15 +1,13 @@
-package youtube;
+package youtube.client.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
-import java.io.IOException;
+import youtube.YoutubeApplication;
+import youtube.client.DataService;
+import youtube.client.Navigator;
 
 public class SignupController {
 
@@ -20,11 +18,16 @@ public class SignupController {
     @FXML
     public PasswordField passwordInput;
 
+    private DataService dataService;
 
     private boolean isDarkmode = false;
-    private final String darkTheme = getClass().getResource("styles/dark-theme.css").toExternalForm();
-    private final String lightTheme = getClass().getResource("styles/light-theme.css").toExternalForm();
+    private final String darkTheme = YoutubeApplication.class.getResource("styles/dark-theme.css").toExternalForm();
+    private final String lightTheme = YoutubeApplication.class.getResource("styles/light-theme.css").toExternalForm();
 
+    public SignupController(DataService dataService, boolean isDarkmode) {
+        this.dataService = dataService;
+        this.isDarkmode = isDarkmode;
+    }
 
     public void setTheme(boolean isDarkmode){
         this.isDarkmode = isDarkmode;
@@ -32,12 +35,12 @@ public class SignupController {
 
     @FXML
     public void signinBtnHandler(ActionEvent actionEvent) {
-        Navigator.gotoSigninPage((Stage) (usernameInput).getScene().getWindow(), isDarkmode);
+        Navigator.gotoSigninPage((Stage) (usernameInput).getScene().getWindow(), dataService, isDarkmode);
     }
 
     @FXML
     public void homeBtnHandler(ActionEvent actionEvent) {
-        Navigator.gotoHomePage((Stage) (usernameInput).getScene().getWindow(), isDarkmode);
+        Navigator.gotoHomePage((Stage) (usernameInput).getScene().getWindow(), dataService, isDarkmode);
     }
 
 

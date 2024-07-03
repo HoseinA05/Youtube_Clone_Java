@@ -1,10 +1,11 @@
-package youtube;
+package youtube.client.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
+import youtube.YoutubeApplication;
 
 public class PlaylistpageController {
     @FXML
@@ -16,8 +17,8 @@ public class PlaylistpageController {
     @FXML
     public ImageView plVideoImage;
 
-    private final String darkTheme = getClass().getResource("styles/dark-theme.css").toExternalForm();
-    private final String lightTheme = getClass().getResource("styles/light-theme.css").toExternalForm();
+    private final String darkTheme = YoutubeApplication.class.getResource("styles/dark-theme.css").toExternalForm();
+    private final String lightTheme = YoutubeApplication.class.getResource("styles/light-theme.css").toExternalForm();
 
     public void initialize(){
         // Show The Left Menu in maximized mode at first

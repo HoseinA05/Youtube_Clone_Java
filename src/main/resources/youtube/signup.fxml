@@ -11,7 +11,8 @@
 <?import javafx.scene.shape.SVGPath?>
 
 <?import javafx.scene.layout.Pane?>
-<BorderPane id="container" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="youtube.SignupController" >
+<!--<BorderPane id="container" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="youtube.client.controllers.SignupController" >-->
+<BorderPane id="container" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 
     <top>
         <HBox id="topContainer">

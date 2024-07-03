@@ -1,8 +1,9 @@
-package youtube;
+package youtube.client.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
+import youtube.YoutubeApplication;
 
 public class DashboardpageController {
 
@@ -11,8 +12,8 @@ public class DashboardpageController {
     @FXML
     public VBox leftPanelMin;
 
-    private final String darkTheme = getClass().getResource("styles/dark-theme.css").toExternalForm();
-    private final String lightTheme = getClass().getResource("styles/light-theme.css").toExternalForm();
+    private final String darkTheme = YoutubeApplication.class.getResource("styles/dark-theme.css").toExternalForm();
+    private final String lightTheme = YoutubeApplication.class.getResource("styles/light-theme.css").toExternalForm();
 
     public void initialize(){
         // Don't show left panel by default in video page.

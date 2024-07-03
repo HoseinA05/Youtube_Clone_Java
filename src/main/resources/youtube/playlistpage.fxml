@@ -12,7 +12,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<BorderPane prefHeight="600" prefWidth="1200" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="youtube.PlaylistpageController">
+
+<!--<BorderPane prefHeight="600" prefWidth="1200" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="youtube.client.controllers.PlaylistpageController">-->
+<BorderPane prefHeight="600" prefWidth="1200" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
     <!-- Top navigation bar -->
     <top>
         <HBox id="topNav" alignment="CENTER_LEFT" spacing="10">

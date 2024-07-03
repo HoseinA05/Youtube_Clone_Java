@@ -1,4 +1,4 @@
-package youtube;
+package youtube.client.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -6,6 +6,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import youtube.YoutubeApplication;
+import youtube.client.DataService;
+import youtube.client.Navigator;
 
 public class ChannelpageController {
 
@@ -20,9 +23,16 @@ public class ChannelpageController {
     @FXML
     public ImageView videoImg;
 
+    private DataService dataService;
+
     private boolean isDarkmode = false;
-    private final String darkTheme = getClass().getResource("styles/dark-theme.css").toExternalForm();
-    private final String lightTheme = getClass().getResource("styles/light-theme.css").toExternalForm();
+    private final String darkTheme = YoutubeApplication.class.getResource("styles/dark-theme.css").toExternalForm();
+    private final String lightTheme = YoutubeApplication.class.getResource("styles/light-theme.css").toExternalForm();
+
+    public ChannelpageController(DataService dataService, boolean isDarkmode) {
+        this.dataService = dataService;
+        this.isDarkmode = isDarkmode;
+    }
 
     public void initialize(){
         // Show The Left Menu in maximized mode at first
@@ -53,11 +63,11 @@ public class ChannelpageController {
 
     @FXML
     public void homeBtnHandler(ActionEvent actionEvent) {
-        Navigator.gotoHomePage((Stage) (leftPanelMax).getScene().getWindow(), isDarkmode);
+        Navigator.gotoHomePage((Stage) (leftPanelMax).getScene().getWindow(), dataService, isDarkmode);
     }
     @FXML
     public void signinBtnHandler(ActionEvent actionEvent) {
-        Navigator.gotoSigninPage((Stage) (leftPanelMax).getScene().getWindow(), isDarkmode);
+        Navigator.gotoSigninPage((Stage) (leftPanelMax).getScene().getWindow(), dataService, isDarkmode);
     }
 
     @FXML

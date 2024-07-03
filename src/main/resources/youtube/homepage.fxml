@@ -15,7 +15,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="youtube.HomepageController">
+<?import javafx.scene.control.ProgressIndicator?>
+<!--<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="youtube.client.controllers.HomepageController">-->
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21">
 
     <!-- Top navigation bar -->
     <top>
@@ -104,6 +106,7 @@
 
             </VBox>
 
+            <ProgressIndicator fx:id="progress" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="40" prefWidth="50" prefHeight="50"/>
         </AnchorPane>
     </left>
 
@@ -113,7 +116,7 @@
             <TilePane fx:id="tilePane" hgap="35" prefColumns="3" style="-fx-padding: 20;" vgap="30">
 
                 <!-- Video Item -->
-                <VBox id="videoBox" spacing="10" styleClass="videoBox" prefWidth="320" onMouseClicked="#videoClickHandler">
+                <VBox styleClass="videoBox" onMouseClicked="#videoClickHandler">
 
                     <ImageView fx:id="img" fitWidth="320" fitHeight="180" preserveRatio="true">
                         <Image url="@testImg.jpg" />
@@ -121,7 +124,7 @@
 
                     <HBox spacing="10">
 
-                        <ImageView styleClass="profileImage" fx:id="profImg" fitWidth="40" fitHeight="40" onMouseClicked="#channelpageHandler">
+                        <ImageView fx:id="profImg" fitWidth="40" fitHeight="40" onMouseClicked="#channelpageHandler">
                             <Image url="@testImg.jpg" />
                             <HBox.margin>
                                 <Insets top="5.0" />
@@ -129,7 +132,7 @@
                         </ImageView>
 
                         <VBox>
-                            <Label styleClass="videoTitle" wrapText="true" text="Video Title Video Title Video Title Video Title Video Title" />
+                            <Label fx:id="videoTitle" styleClass="videoTitle" text="Video Title Video Title Video Title Video Title Video Title" />
                             <Label styleClass="videoInfo" text="The Hossein" onMouseClicked="#channelpageHandler"/>
                             <Label styleClass="videoInfo" text="1M views • 1 year ago" />
                         </VBox>
