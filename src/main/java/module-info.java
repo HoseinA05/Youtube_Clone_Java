@@ -1,4 +1,6 @@
 module sbu.cs.youtube {
+    requires org.json;
+
     requires java.sql;
     requires org.postgresql.jdbc;
     requires java.desktop;

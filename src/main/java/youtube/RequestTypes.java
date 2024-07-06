@@ -1,0 +1,38 @@
+package youtube;
+
+public enum RequestTypes {
+    // users
+    GET_USERINFO,
+    SIGN_IN,
+    FOLLOW,
+    UNFOLLOW,
+    EDIT_USER,
+    CREATE_USER,
+    DELETE_USER,
+
+    // videos
+    GET_AUTH_VIDEO_BY_ID,
+    GET_VIDEO_BY_ID,
+    GET_USER_VIDEOS,
+    GET_HOME_VIDEOS,
+    GET_TAG_VIDEOS,
+    CREATE_VIDEO,
+    EDIT_VIDEO,
+    DELETE_VIDEO,
+    PUT_VIDEO_LIKE,
+    DELETE_VIDEO_LIKE,
+    PUT_VIDEO_TAG,
+    DELETE_VIDEO_TAG,
+
+    // comments
+    GET_AUTH_VIDEO_COMMENTS,
+    GET_VIDEO_COMMENTS,
+    GET_AUTH_REPLIES,
+    GET_REPLIES,
+    CREATE_COMMENT,
+    CREATE_REPLY,
+    EDIT_COMMENT,
+    DELETE_COMMENT,
+    PUT_COMMENT_LIKE,
+    DELETE_COMMENT_LIKE,
+}
