@@ -1,0 +1,12 @@
+.root{
+    bg1: #fff;
+    color1: black;
+    color2: #606060;
+    svgColor: black;
+    hoverBg: #f2f2f2;
+    searchBG: #fff;
+    searchBorderColor: #d3d3d3;
+    searchBtnBgColor: #f8f8f8;
+    subscribeBG: black;
+    subscribeTC: white;
+}

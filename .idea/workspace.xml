@@ -4,28 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c7c77138-5c2b-4709-bd3f-716ccf2d3bb2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/youtube/HelloApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/youtube/HelloController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/youtube/hello-view.fxml" afterDir="false" />
+    <list default="true" id="c7c77138-5c2b-4709-bd3f-716ccf2d3bb2" name="Changes" comment="Created Dashboardpage (Design for later)">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/youtube/client/Navigator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/youtube/client/Navigator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/youtube/client/controllers/VideopageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/youtube/client/controllers/VideopageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/youtube/styles/videopage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/youtube/styles/videopage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/youtube/videopage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/youtube/videopage.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="FxmlFile" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="frontend" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MavenImportPreferences">
@@ -35,6 +39,10 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2hgdCGUOawFToXDGMdlZC3oSpWi" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -44,19 +52,56 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.HelloApplication.executor": "Run",
+    "Application.Server.executor": "Run",
+    "Application.YoutubeApplication.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true"
+    "git-widget-placeholder": "frontend",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_directory_selection": "D:/boys/Hosein/University/Term2/AP/09_AP-Final-Project/Youtube_Clone_Java/src/main/java/youtube",
+    "last_opened_file_path": "F:/hosein/Dev/Java/yt-clone-front/Youtube_Clone_Java/src/main/resources/youtube",
+    "project.structure.last.edited": "Global Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.sourceCode.Java"
   }
 }]]></component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
-      </set>
-    </attachedChunks>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="youtube.client" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\hosein\Dev\Java\yt-clone-front\Youtube_Clone_Java\src\main\resources\youtube" />
+      <recent name="D:\boys\Hosein\University\Term2\AP\09_AP-Final-Project\Youtube_Clone_Java\src\main\resources\youtube" />
+      <recent name="D:\boys\Hosein\University\Term2\AP\09_AP-Final-Project\Youtube_Clone_Java\src\main\resources" />
+      <recent name="D:\boys\Hosein\University\Term2\AP\09_AP-Final-Project\Youtube_Clone_Java\src\main\resources\img" />
+      <recent name="D:\boys\Hosein\University\Term2\AP\09_AP-Final-Project\Youtube_Clone_Java\src\main\resources\css" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\boys\Hosein\University\Term2\AP\09_AP-Final-Project\Youtube_Clone_Java\src\main\resources\youtube" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="YoutubeApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="youtube.YoutubeApplication" />
+      <module name="youtube" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="youtube.client.controllers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.YoutubeApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -67,6 +112,107 @@
       <option name="presentableId" value="Default" />
       <updated>1718019531657</updated>
     </task>
+    <task id="LOCAL-00001" summary="Init Commit">
+      <option name="closed" value="true" />
+      <created>1718024778758</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1718024778758</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Completed Homepage Design">
+      <option name="closed" value="true" />
+      <created>1718565670367</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1718565670367</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Designed Basic Template for sign in and sign up">
+      <option name="closed" value="true" />
+      <created>1718604295966</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1718604295966</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Designed Basic Template for Video Page">
+      <option name="closed" value="true" />
+      <created>1718782875901</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1718782875901</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Designed Basic Template for Channel Page">
+      <option name="closed" value="true" />
+      <created>1718802269151</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1718802269151</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Designed Basic Template for Playlist Page">
+      <option name="closed" value="true" />
+      <created>1718807935358</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1718807935358</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Created Dashboardpage (Design for later)">
+      <option name="closed" value="true" />
+      <created>1718811342238</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1718811342238</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="Space.CommitStatus" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/frontend" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Init Commit" />
+    <MESSAGE value="Completed Homepage Design" />
+    <MESSAGE value="Designed Basic Template for sign in and sign up" />
+    <MESSAGE value="Designed Basic Template for Video Page" />
+    <MESSAGE value="Designed Basic Template for Channel Page" />
+    <MESSAGE value="Designed Basic Template for Playlist Page" />
+    <MESSAGE value="Created Dashboardpage (Design for later)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created Dashboardpage (Design for later)" />
   </component>
 </project>
