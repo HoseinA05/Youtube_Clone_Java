@@ -1,0 +1,30 @@
+Button {
+    -fx-cursor: hand;
+}
+
+.videoBox{
+    -fx-background-color: transparent;
+    -fx-spacing: 10px;
+    -fx-pref-width: 320px;
+}
+
+
+#scrollpane, #scrollpane > .viewport{
+    -fx-background-color: bg1;
+}
+
+.videoTitle{
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: color1;
+    -fx-wrap-text: true;
+}
+.videoInfo{
+    -fx-text-fill: color2;
+    -fx-font-size: 12px;
+}
+
+.bottomProgress{
+    -fx-background-color: red;
+    -fx-alignment: center;
+}

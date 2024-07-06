@@ -1,0 +1,41 @@
+Button {
+    -fx-cursor: hand;
+}
+
+.plInfoContainer{
+    -fx-padding: 25px;
+    -fx-background-color: #524734;
+    -fx-background-radius: 15px;
+}
+
+.plName{
+    -fx-text-fill: subscribeTC;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+.plInfo{
+    -fx-text-fill: #d7d3cb;
+    -fx-opacity: 0.8;
+    -fx-font-size: 14px;
+}
+
+#rightScrollpane, #rightScrollpane > .viewport{
+    -fx-background-color: bg1;
+    -fx-padding: 25px;
+}
+
+.VideoNumber{
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: color1;
+    -fx-padding: 5px;
+}
+.videoTitle{
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: color1;
+}
+.videoInfo{
+    -fx-text-fill: color2;
+    -fx-font-size: 12px;
+}

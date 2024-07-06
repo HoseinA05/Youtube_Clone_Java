@@ -1,0 +1,65 @@
+Button {
+    -fx-cursor: hand;
+}
+
+.channelName{
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-text-fill: color1;
+}
+.channelInfo{
+    -fx-text-fill: color2;
+    -fx-font-size: 12px;
+}
+
+#subscribeBtn{
+    -fx-background-color: subscribeBG;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER;
+    -fx-background-radius: 25px;
+    -fx-text-fill: subscribeTC;
+    -fx-padding: 8px 15px;
+}
+
+.channelItemsContainer{
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-color: color2;
+}
+
+.channelItemBtn{
+    -fx-background-color: transparent;
+    -fx-text-fill: color2;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 0;
+}
+.channelItemBtn:hover{
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-color: color2;
+}
+.channelItemSelected{
+    -fx-text-fill: color1;
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-color: color1;
+}
+.channelItemSelected:hover{
+    -fx-border-color: color1;
+}
+
+#scrollpane, #scrollpane > .viewport{
+    -fx-background-color: bg1;
+}
+
+#videoBox{
+    -fx-background-color: transparent;
+}
+.videoTitle{
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: color1;
+}
+.videoInfo{
+    -fx-text-fill: color2;
+    -fx-font-size: 12px;
+}

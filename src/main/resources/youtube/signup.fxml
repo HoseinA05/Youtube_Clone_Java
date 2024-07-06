@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.SVGPath?>
+
+<?import javafx.scene.layout.Pane?>
+<!--<BorderPane id="container" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="youtube.client.controllers.SignupController" >-->
+<BorderPane id="container" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+
+    <top>
+        <HBox id="topContainer">
+
+            <Button id="youtubeIconBtn" graphicTextGap="5" text="YouTube" onAction="#homeBtnHandler">
+                <graphic>
+                    <SVGPath fill="Red" content="M 44.898438 14.5 C 44.5 12.300781 42.601563 10.699219 40.398438 10.199219 C 37.101563 9.5 31 9 24.398438 9 C 17.800781 9 11.601563 9.5 8.300781 10.199219 C 6.101563 10.699219 4.199219 12.199219 3.800781 14.5 C 3.398438 17 3 20.5 3 25 C 3 29.5 3.398438 33 3.898438 35.5 C 4.300781 37.699219 6.199219 39.300781 8.398438 39.800781 C 11.898438 40.5 17.898438 41 24.5 41 C 31.101563 41 37.101563 40.5 40.601563 39.800781 C 42.800781 39.300781 44.699219 37.800781 45.101563 35.5 C 45.5 33 46 29.398438 46.101563 25 C 45.898438 20.5 45.398438 17 44.898438 14.5 Z M 19 32 L 19 18 L 31.199219 25 Z" />
+                </graphic>
+            </Button>
+
+            <Pane HBox.hgrow="ALWAYS"/>
+
+            <Button id="darkmodeBtn" graphicTextGap="5" onAction="#toggleTheme">
+                <graphic>
+                    <SVGPath content="M12 22C10.93 22 9.86998 21.83 8.83998 21.48L7.41998 21.01L8.83998 20.54C12.53 19.31 15 15.88 15 12C15 8.12 12.53 4.69 8.83998 3.47L7.41998 2.99L8.83998 2.52C9.86998 2.17 10.93 2 12 2C17.51 2 22 6.49 22 12C22 17.51 17.51 22 12 22ZM10.58 20.89C11.05 20.96 11.53 21 12 21C16.96 21 21 16.96 21 12C21 7.04 16.96 3 12 3C11.53 3 11.05 3.04 10.58 3.11C13.88 4.81 16 8.21 16 12C16 15.79 13.88 19.19 10.58 20.89Z"  />
+                </graphic>
+            </Button>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox id="formBox">
+            <HBox styleClass="inputBox">
+                <Label text="Name: " />
+                <TextField fx:id="nameInput"/>
+            </HBox>
+
+            <HBox styleClass="inputBox" >
+                <Label text="Username: " />
+                <TextField fx:id="usernameInput"/>
+            </HBox>
+
+            <HBox styleClass="inputBox" >
+                <Label text="Password : " />
+                <PasswordField fx:id="passwordInput"/>
+            </HBox>
+
+            <HBox styleClass="btnsContainer">
+                <Button id="signinBtn" text="Already have an account? Sign in." onAction="#signinBtnHandler"/>
+                <Button id="signupBtn" text="Sign Up"/>
+            </HBox>
+        </VBox>
+    </center>
+
+</BorderPane>
