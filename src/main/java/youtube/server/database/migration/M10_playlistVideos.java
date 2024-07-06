@@ -11,8 +11,9 @@ public class M10_playlistVideos implements MigrationInterface {
                 custom_order INT NOT NULL DEFAULT 1,
                 created_at TIMESTAMP NOT NULL DEFAULT NOW(),
                 updated_at TIMESTAMP NULL,
-                -- UNIQUE(playlist_id,video_id,custom_order),
-                FOREIGN KEY (video_id) REFERENCES videos (id) ON DELETE CASCADE
+                FOREIGN KEY (video_id) REFERENCES videos (id) ON DELETE CASCADE,
+                FOREIGN KEY (playlist_id) REFERENCES playlists (id) ON DELETE CASCADE,
+                UNIQUE(playlist_id,video_id)
             );
         """;
     }

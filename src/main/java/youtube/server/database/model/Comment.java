@@ -3,20 +3,20 @@ package youtube.server.database.model;
 import java.sql.Timestamp;
 
 public class Comment {
-    int  id;
-    String  text;
-    int   userId;
-    int   videoId;
-    int   commentId;
-    Timestamp createdAt;
-    Timestamp   updatedAt ;
+    private int id;
+    private String text;
+    private int userId;
+    private int videoId;
+    private int commentId;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
     /// extra columns
-    int repliesCount;
-    int likesCount;
-    int dislikesCount;
-    String replyUsername;
-    String userName;
-    LikeState CurrentUserLike;
+    private int repliesCount;
+    private int likesCount;
+    private int dislikesCount;
+    private String replyUsername;
+    private String userName;
+    private LikeState CurrentUserLike;
 
     public int getId() {
         return id;
@@ -120,5 +120,24 @@ public class Comment {
 
     public void setCurrentUserLike(LikeState currentUserLike) {
         CurrentUserLike = currentUserLike;
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id=" + id +
+                ", text='" + text + '\'' +
+                ", userId=" + userId +
+                ", videoId=" + videoId +
+                ", commentId=" + commentId +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", repliesCount=" + repliesCount +
+                ", likesCount=" + likesCount +
+                ", dislikesCount=" + dislikesCount +
+                ", replyUsername='" + replyUsername + '\'' +
+                ", userName='" + userName + '\'' +
+                ", CurrentUserLike=" + CurrentUserLike +
+                '}';
     }
 }

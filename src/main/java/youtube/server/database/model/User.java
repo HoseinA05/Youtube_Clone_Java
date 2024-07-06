@@ -11,13 +11,34 @@ public class User {
     private String aboutMe;
     private Timestamp createdAt;
     private Timestamp updatedAt;
-    String profilePhotoPath;
-    String channelPhotoPath;
+    private String profilePhotoPath;
+    private String channelPhotoPath;
     /// extra columns
     private int totalViews;
     private int subscribers;
     private int subscribings;
     private int uploadCount;
+    private boolean isCurrentUserSubscribed;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", hashedPassword='" + hashedPassword + '\'' +
+                ", aboutMe='" + aboutMe + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", profilePhotoPath='" + profilePhotoPath + '\'' +
+                ", channelPhotoPath='" + channelPhotoPath + '\'' +
+                ", totalViews=" + totalViews +
+                ", subscribers=" + subscribers +
+                ", subscribings=" + subscribings +
+                ", uploadCount=" + uploadCount +
+                ", isCurrentUserSubscribed=" + isCurrentUserSubscribed +
+                '}';
+    }
 
     public int getId() {
         return id;
@@ -123,22 +144,11 @@ public class User {
         this.uploadCount = uploadCount;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", hashedPassword='" + hashedPassword + '\'' +
-                ", aboutMe='" + aboutMe + '\'' +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                ", profilePhotoPath='" + profilePhotoPath + '\'' +
-                ", channelPhotoPath='" + channelPhotoPath + '\'' +
-                ", totalViews=" + totalViews +
-                ", subscribers=" + subscribers +
-                ", subscribings=" + subscribings +
-                ", uploadCount=" + uploadCount +
-                '}';
+    public boolean isCurrentUserSubscribed() {
+        return isCurrentUserSubscribed;
+    }
+
+    public void setCurrentUserSubscribed(boolean currentUserSubscribed) {
+        isCurrentUserSubscribed = currentUserSubscribed;
     }
 }

@@ -3,22 +3,24 @@ package youtube.server.database.model;
 import java.sql.Timestamp;
 
 public class Video {
-    private int   id;
+    private int id;
     private String title;
     private String description;
     private String videoPath;
-    private int   userId;
+    private String thumbnailPath;
+    private int userId;
     private Timestamp createdAt;
-    private Timestamp  updatedAt;
-    private int  viewsCount;
+    private Timestamp updatedAt;
+    private int viewsCount;
     /// extra columns
     private String userName;
     private String tags;  // comma seperated
-    private int  userSubscribesCount;
-    private int  likesCount;
-    private int  dislikesCount;
-    private int  commentsCount;
+    private int userSubscribesCount;
+    private int likesCount;
+    private int dislikesCount;
+    private int commentsCount;
     private LikeState currentUserLike;
+    private boolean isCurrentUserSubscribed;
 
     public int getId() {
         return id;
@@ -50,6 +52,14 @@ public class Video {
 
     public void setVideoPath(String videoPath) {
         this.videoPath = videoPath;
+    }
+
+    public String getThumbnailPath() {
+        return thumbnailPath;
+    }
+
+    public void setThumbnailPath(String thumbnailPath) {
+        this.thumbnailPath = thumbnailPath;
     }
 
     public int getUserId() {
@@ -138,5 +148,36 @@ public class Video {
 
     public void setCurrentUserLike(LikeState currentUserLike) {
         this.currentUserLike = currentUserLike;
+    }
+
+    public boolean isCurrentUserSubscribed() {
+        return isCurrentUserSubscribed;
+    }
+
+    public void setCurrentUserSubscribed(boolean currentUserSubscribed) {
+        isCurrentUserSubscribed = currentUserSubscribed;
+    }
+
+    @Override
+    public String toString() {
+        return "Video{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", videoPath='" + videoPath + '\'' +
+                ", thumbnailPath='" + thumbnailPath + '\'' +
+                ", userId=" + userId +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", viewsCount=" + viewsCount +
+                ", userName='" + userName + '\'' +
+                ", tags='" + tags + '\'' +
+                ", userSubscribesCount=" + userSubscribesCount +
+                ", likesCount=" + likesCount +
+                ", dislikesCount=" + dislikesCount +
+                ", commentsCount=" + commentsCount +
+                ", currentUserLike=" + currentUserLike +
+                ", isCurrentUserSubscribed=" + isCurrentUserSubscribed +
+                '}';
     }
 }
