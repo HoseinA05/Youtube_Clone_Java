@@ -90,19 +90,19 @@ public class Navigator {
         Scene scene = null;
         try {
             scene = new Scene(fxmlLoader.load(), 1200, 600);
+            scene.getStylesheets().addAll(
+                    YoutubeApplication.class.getResource("styles/videopage.css").toExternalForm(),
+                    YoutubeApplication.class.getResource("styles/template.css").toExternalForm()
+            );
+            scene.getStylesheets().add(isDarkmode ? darkTheme : lightTheme);
+
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
 
-        scene.getStylesheets().addAll(
-                YoutubeApplication.class.getResource("styles/videopage.css").toExternalForm(),
-                YoutubeApplication.class.getResource("styles/template.css").toExternalForm()
-        );
-        scene.getStylesheets().add(isDarkmode ? darkTheme : lightTheme);
 
-        Stage stage = appStage;
-        stage.setScene(scene);
-        stage.show();
+        appStage.setScene(scene);
+        appStage.show();
     }
 
     public static void gotoChannelPage(Stage appStage, DataService dataService, boolean isDarkmode) {

@@ -13,11 +13,14 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
-
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.layout.Pane?>
 
+<?import javafx.geometry.Insets?>
+
 <!--<BorderPane prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="youtube.client.controllers.VideopageController">-->
-<BorderPane prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="mainPane" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
     <!-- Top navigation bar -->
     <top>
         <HBox id="topNav" alignment="CENTER_LEFT" spacing="10">
@@ -93,8 +96,39 @@
 
     <center>
         <ScrollPane fx:id="centerScrollpane" id="centerScrollpane" hbarPolicy="NEVER" fitToWidth="true">
-            <VBox spacing="20">
-                <MediaView fx:id="mediaView" fitWidth="700" fitHeight="400" preserveRatio="false"/>
+            <VBox fx:id="centerContainer" spacing="20" >
+                <AnchorPane fx:id="videoPane" prefHeight="600" style="-fx-background-color: black;" onKeyPressed="#videoKeyPressedHandler" onMousePressed="#mousePressesVideoHandler" onMouseEntered="#mouseEnterVideoHandler" onMouseExited="#mouseExitVideoHandler">
+                    <MediaView fx:id="mediaView" preserveRatio="true"/>
+
+                    <Button fx:id="pauseBtn" styleClass="videoBtn" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="20" alignment="CENTER" visible="false" onMouseClicked="#pauseBtnHandler">
+                        <graphic>
+                            <SVGPath fx:id="pauseSvg" content="M 12,26 18.5,22 18.5,14 12,10 z M 18.5,22 25,18 25,18 18.5,14 z" />
+                        </graphic>
+                    </Button>
+
+                    <Button fx:id="nextVideoBtn" styleClass="videoBtn" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="55" alignment="CENTER" visible="false" onMouseClicked="#nextVideoBtnHandler">
+                        <graphic>
+                            <SVGPath fx:id="nextVideoSvg" content="M 12,24 20.5,18 12,12 V 24 z M 22,12 v 12 h 2 V 12 h -2 z" />
+                        </graphic>
+                    </Button>
+
+                    <HBox AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="90" spacing="7" alignment="CENTER" onMouseEntered="#soundAreaMouseEnterHandler" onMouseExited="#soundAreaMouseExitHandler">
+                        <Button fx:id="muteVideoBtn" styleClass="videoBtn" alignment="CENTER" visible="false" onMouseClicked="#muteVideoBtnHandler">
+                            <graphic>
+                                <SVGPath fx:id="muteVideoSvg" content="M8,21 L12,21 L17,26 L17,10 L12,15 L8,15 L8,21 Z M19,14 L19,22 C20.48,21.32 21.5,19.77 21.5,18 C21.5,16.26 20.48,14.74 19,14 ZM19,11.29 C21.89,12.15 24,14.83 24,18 C24,21.17 21.89,23.85 19,24.71 L19,26.77 C23.01,25.86 26,22.28 26,18 C26,13.72 23.01,10.14 19,9.23 L19,11.29 Z" />
+                            </graphic>
+                        </Button>
+
+                        <Slider fx:id="soundSlider" styleClass="soundSlider" max="1.0"/>
+                    </HBox>
+
+                    <Label fx:id="videoTimeLabel" AnchorPane.bottomAnchor="15" AnchorPane.leftAnchor="135" text="0:00 / 1:00" textFill="grey"/>
+
+                    <HBox AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="40">
+                        <Slider fx:id="timeSlider" styleClass="slider" HBox.hgrow="ALWAYS" />
+                    </HBox>
+
+                </AnchorPane>
 
                 <VBox spacing="10">
                     <!-- Video Title -->
@@ -356,4 +390,8 @@
             </VBox>
         </ScrollPane>
     </right>
+
+<!--    <bottom>-->
+<!--        <HBox style="-fx-background-color: transparent;"/>-->
+<!--    </bottom>-->
 </BorderPane>

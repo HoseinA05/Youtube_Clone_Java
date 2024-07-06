@@ -149,3 +149,52 @@ Button {
 .repliesContainer{
     -fx-padding: 2px 0;
 }
+
+// Video
+.videoBtn{
+    -fx-background-color: transparent;
+}
+.videoBtn > SVGPath{
+    -fx-fill: white;
+    -fx-stroke-type: outside;
+}
+
+.slider {
+    -default-track-color: -fx-control-inner-background;
+    -track-color: grey;
+}
+
+.slider .track {
+    -fx-background-color: transparent,
+          linear-gradient(to bottom, derive(-fx-text-box-border, -10%), -fx-text-box-border),
+          -track-color;
+    -fx-pref-height: 4px;
+    -fx-opacity: 0.8;
+    -fx-background-insets: 0;
+    -fx-background-radius: 2px;
+}
+.slider .thumb{
+    -fx-background-color: red;
+    -fx-pref-width: 12px;
+    -fx-pref-height: 12px;
+}
+
+.soundSlider{
+    -default-track-color: -fx-control-inner-background;
+    -track-color: grey;
+}
+.slider .track {
+    -fx-background-color: transparent,
+          linear-gradient(to bottom, derive(-fx-text-box-border, -10%), -fx-text-box-border),
+          -track-color;
+    -fx-pref-height: 4px;
+    -fx-pref-width: 35px;
+    -fx-opacity: 0.8;
+    -fx-background-insets: 0;
+    -fx-background-radius: 2px;
+}
+.slider .thumb{
+    -fx-background-color: white;
+    -fx-pref-width: 12px;
+    -fx-pref-height: 12px;
+}
