@@ -1,0 +1,200 @@
+Button {
+    -fx-cursor: hand;
+}
+
+#centerScrollpane {
+    -fx-padding: 20px;
+}
+#centerScrollpane, #centerScrollpane > .viewport{
+    -fx-background-color: bg1;
+}
+
+#rightScrollpane, #rightScrollpane > .viewport{
+    -fx-background-color: bg1;
+}
+
+.rightContainer{
+    -fx-background-color: bg1;
+    -fx-padding: 10px;
+}
+
+.videoTitle{
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: color1;
+}
+.videoInfo{
+    -fx-text-fill: color2;
+    -fx-font-size: 12px;
+}
+
+.mainVideoTitle{
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: color1;
+}
+.channelName{
+    -fx-text-fill: color1;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+#subscribeBtn{
+    -fx-background-color: subscribeBG;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER;
+    -fx-background-radius: 25px;
+    -fx-text-fill: subscribeTC;
+    -fx-padding: 8px 15px;
+}
+
+.videoBtns{
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: color1;
+    -fx-background-color: hoverBg;
+    -fx-padding: 8px 15px;
+}
+.videoBtns > SVGPath{
+    -fx-fill: transparent;
+    -fx-stroke: svgColor;
+    -fx-stroke-type: inside;
+}
+#likeBtn{
+    -fx-background-radius: 40 0 0 40;
+}
+#dislikeBtn{
+    -fx-border-width: 0 0 0 1px;
+    -fx-border-color: black;
+    -fx-background-radius: 0 40 40 0;
+}
+
+#videoInformation{
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: color1;
+}
+#videoDescription{
+    -fx-font-size: 13px;
+    -fx-text-fill: color1;
+}
+#videoDescContainer{
+    -fx-padding: 10px;
+    -fx-background-color: hoverBg;
+    -fx-background-radius: 20px;
+}
+
+.commentTextfield{
+    -fx-background-color: transparent;
+    -fx-text-fill: color2;
+    -fx-font-size: 13px;
+    -fx-border-width: 0 0 2px 0;
+    -fx-border-color: hoverBg;
+}
+.commentUsername{
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: color1;
+}
+.commentHistory{
+    -fx-font-size: 11px;
+    -fx-text-fill: color2;
+}
+.commentText{
+    -fx-font-size: 13px;
+    -fx-text-fill: color1;
+}
+.commentBtn{
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: color1;
+    -fx-background-color: transparent;
+    -fx-padding: 5px;
+    -fx-background-radius: 20px;
+}
+.commentBtn:hover{
+    -fx-background-color: hoverBg;
+}
+.commentBtn > SVGPath {
+    -fx-fill: transparent;
+    -fx-stroke: svgColor;
+    -fx-stroke-type: inside;
+}
+.commentLikeCount{
+    -fx-background-color: transparent;
+    -fx-text-fill: color2;
+    -fx-font-size: 12px;
+    -fx-padding: 5px 0;
+}
+.commentLikeCount:disabled{
+    -fx-opacity: 1;
+}
+.repliesBtn{
+    -fx-padding: 7px 10px;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #3ea6ff;
+    -fx-background-color: transparent;
+    -fx-background-radius: 20px;
+}
+.repliesBtn:hover{
+    -fx-background-color: #263850;
+}
+.repliesBtn > SVGPath{
+    -fx-fill: transparent;
+    -fx-stroke: #3ea6ff;
+    -fx-stroke-type: inside;
+}
+
+.repliesContainer{
+    -fx-padding: 2px 0;
+}
+
+// Video
+.videoBtn{
+    -fx-background-color: transparent;
+}
+.videoBtn > SVGPath{
+    -fx-fill: white;
+    -fx-stroke-type: outside;
+}
+
+.slider {
+    -default-track-color: -fx-control-inner-background;
+    -track-color: grey;
+}
+
+.slider .track {
+    -fx-background-color: transparent,
+          linear-gradient(to bottom, derive(-fx-text-box-border, -10%), -fx-text-box-border),
+          -track-color;
+    -fx-pref-height: 4px;
+    -fx-opacity: 0.8;
+    -fx-background-insets: 0;
+    -fx-background-radius: 2px;
+}
+.slider .thumb{
+    -fx-background-color: red;
+    -fx-pref-width: 12px;
+    -fx-pref-height: 12px;
+}
+
+.soundSlider{
+    -default-track-color: -fx-control-inner-background;
+    -track-color: grey;
+}
+.slider .track {
+    -fx-background-color: transparent,
+          linear-gradient(to bottom, derive(-fx-text-box-border, -10%), -fx-text-box-border),
+          -track-color;
+    -fx-pref-height: 4px;
+    -fx-pref-width: 35px;
+    -fx-opacity: 0.8;
+    -fx-background-insets: 0;
+    -fx-background-radius: 2px;
+}
+.slider .thumb{
+    -fx-background-color: white;
+    -fx-pref-width: 12px;
+    -fx-pref-height: 12px;
+}

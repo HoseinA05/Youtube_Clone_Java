@@ -41,9 +41,9 @@
     </option>
   </component>
   <component name="ProjectColorInfo">{
-    &quot;customColor&quot;: &quot;&quot;,
-    &quot;associatedIndex&quot;: 6
-    }</component>
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2hgdCGUOawFToXDGMdlZC3oSpWi" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -217,3 +217,4 @@
     <option name="LAST_COMMIT_MESSAGE" value="Created Dashboardpage (Design for later)" />
   </component>
 </project>
+
