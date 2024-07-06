@@ -1,7 +1,7 @@
 package youtube.client;
 
 import javafx.concurrent.Task;
-import youtube.client.test.Video;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -30,24 +30,24 @@ public class DataService {
         }
     }
 
-    public Task<ArrayList<Video>> getNewHomepageVideos(){
-        return new Task<ArrayList<Video>>() {
-            @Override
-            protected ArrayList<Video> call() throws Exception {
-
-                outStream.println("getVideos");
-                System.out.println("Send The Request");
-                Thread.sleep(3000);
-                String response = "Testing";
-                try {
-                    response = inpStream.readLine();
-                } catch (IOException e) {
-                    System.out.println(e.getMessage());
-                }
-                System.out.println("Got The Response");
-
-                return Video.parseJsonToVideos(response);
-            }
-        };
-    }
+    // public Task<ArrayList<Video>> getNewHomepageVideos(){
+    //     return new Task<ArrayList<Video>>() {
+    //         @Override
+    //         protected ArrayList<Video> call() throws Exception {
+    //
+    //             outStream.println("getVideos");
+    //             System.out.println("Send The Request");
+    //             Thread.sleep(3000);
+    //             String response = "Testing";
+    //             try {
+    //                 response = inpStream.readLine();
+    //             } catch (IOException e) {
+    //                 System.out.println(e.getMessage());
+    //             }
+    //             System.out.println("Got The Response");
+    //
+    //             return Video.parseJsonToVideos(response);
+    //         }
+    //     };
+    // }
 }

@@ -11,6 +11,4 @@ module sbu.cs.youtube {
     opens youtube.client.controllers to javafx.fxml;
     exports youtube.client;
     opens youtube.client to javafx.fxml;
-    exports youtube.client.test;
-    opens youtube.client.test to javafx.fxml;
 }
