@@ -14,6 +14,7 @@ public class M02_videos implements MigrationInterface {
                updated_at TIMESTAMP NULL,
                view_count BIGINT DEFAULT 0,
                thumbnail_path VARCHAR(36) NULL,
+               is_private BOOLEAN DEFAULT FALSE,
                FOREIGN KEY ("user_id") REFERENCES "users" ("id")
            );
         """;

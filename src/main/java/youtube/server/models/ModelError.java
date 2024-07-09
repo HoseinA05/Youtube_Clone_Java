@@ -1,4 +1,4 @@
-package youtube.server.database.model;
+package youtube.server.models;
 
 public class ModelError extends Exception {
     public ModelError(String message) {

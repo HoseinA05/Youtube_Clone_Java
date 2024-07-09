@@ -1,11 +1,5 @@
 package youtube.server.test;
 
-import youtube.server.database.model.*;
-
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class test {
     public static void main(String[] args) throws Exception {
         System.out.println("running query");

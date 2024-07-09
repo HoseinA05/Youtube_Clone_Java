@@ -1,6 +1,6 @@
 package youtube.server.database.migration;
 
-public class M11_histories implements MigrationInterface {
+public class M12_histories implements MigrationInterface {
     @Override
     public String getCreateQuery() {
         return """

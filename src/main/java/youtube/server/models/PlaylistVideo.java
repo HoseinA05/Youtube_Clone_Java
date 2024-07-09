@@ -1,4 +1,4 @@
-package youtube.server.database.model;
+package youtube.server.models;
 
 import java.sql.Timestamp;
 
@@ -6,6 +6,9 @@ public class PlaylistVideo {
     private int PlaylistId;
     private int videoId;
     private int Order;
+    private int adderUserID;
+    private String adderUsername;
+    private Timestamp addedAt;
     // extra columns from other tables
     private int videoViewCount;
     private String videoThumbnail;
@@ -75,5 +78,46 @@ public class PlaylistVideo {
 
     public void setVideoCreator(String videoCreator) {
         this.videoCreator = videoCreator;
+    }
+
+    public int getAdderUserID() {
+        return adderUserID;
+    }
+
+    public void setAdderUserID(int adderUserID) {
+        this.adderUserID = adderUserID;
+    }
+
+    public String getAdderUsername() {
+        return adderUsername;
+    }
+
+    public void setAdderUsername(String adderUsername) {
+        this.adderUsername = adderUsername;
+    }
+
+    public Timestamp getAddedAt() {
+        return addedAt;
+    }
+
+    public void setAddedAt(Timestamp addedAt) {
+        this.addedAt = addedAt;
+    }
+
+    @Override
+    public String toString() {
+        return "PlaylistVideo{" +
+                "PlaylistId=" + PlaylistId +
+                ", videoId=" + videoId +
+                ", Order=" + Order +
+                ", adderUserID=" + adderUserID +
+                ", adderUsername='" + adderUsername + '\'' +
+                ", addedAt=" + addedAt +
+                ", videoViewCount=" + videoViewCount +
+                ", videoThumbnail='" + videoThumbnail + '\'' +
+                ", videoTitle='" + videoTitle + '\'' +
+                ", videoCreatedAt=" + videoCreatedAt +
+                ", videoCreator='" + videoCreator + '\'' +
+                '}';
     }
 }

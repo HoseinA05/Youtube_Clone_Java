@@ -1,17 +1,18 @@
-package youtube.server.database.model;
+package youtube.server.models;
 
 import java.sql.Timestamp;
 
 public class Playlist {
-    int id;
-    String name;
-    String text;
-    int userId;
-    Timestamp createdAt;
-    Timestamp updatedAt;
+    private int id;
+    private String name;
+    private String text;
+    private int userId;
+    private String thumbnailPath;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
     /// extra columns from other tables
-    int videoCount;
-    String creatorUsername;
+    private int videoCount;
+    private String creatorUsername;
 
     public int getId() {
         return id;
@@ -89,6 +90,14 @@ public class Playlist {
                 ", videoCount=" + videoCount +
                 ", creatorUsername='" + creatorUsername + '\'' +
                 '}';
+    }
+
+    public String getThumbnailPath() {
+        return thumbnailPath;
+    }
+
+    public void setThumbnailPath(String thumbnailPath) {
+        this.thumbnailPath = thumbnailPath;
     }
 }
 

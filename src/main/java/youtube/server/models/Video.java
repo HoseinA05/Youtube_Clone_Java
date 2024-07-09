@@ -1,4 +1,4 @@
-package youtube.server.database.model;
+package youtube.server.models;
 
 import java.sql.Timestamp;
 
@@ -12,6 +12,7 @@ public class Video {
     private Timestamp createdAt;
     private Timestamp updatedAt;
     private int viewsCount;
+    private boolean isPrivate;
     /// extra columns
     private String userName;
     private String tags;  // comma seperated
@@ -158,6 +159,14 @@ public class Video {
         isCurrentUserSubscribed = currentUserSubscribed;
     }
 
+    public boolean isPrivate() {
+        return isPrivate;
+    }
+
+    public void setPrivate(boolean aPrivate) {
+        isPrivate = aPrivate;
+    }
+
     @Override
     public String toString() {
         return "Video{" +
@@ -170,6 +179,7 @@ public class Video {
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 ", viewsCount=" + viewsCount +
+                ", isPrivate=" + isPrivate +
                 ", userName='" + userName + '\'' +
                 ", tags='" + tags + '\'' +
                 ", userSubscribesCount=" + userSubscribesCount +

@@ -1,4 +1,4 @@
-package youtube.server.database.model;
+package youtube.server.models;
 
 public enum LikeState {
     DISLIKE,

@@ -1,14 +1,16 @@
-package youtube.server.database.model;
+package youtube.server.models;
 
 import java.sql.Timestamp;
 
 public class History {
+    private int id;
     private String username;
     private int userId;
     private int videoId;
     private String videoTitle;
     private String videoThumbnail;
-    private Timestamp createdAt;
+    private Timestamp videoCreatedAt;
+    private Timestamp watchedAt;
 
     public String getUsername() {
         return username;
@@ -50,23 +52,41 @@ public class History {
         this.videoThumbnail = videoThumbnail;
     }
 
-    public Timestamp getCreatedAt() {
-        return createdAt;
+    public Timestamp getVideoCreatedAt() {
+        return videoCreatedAt;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
+    public void setVideoCreatedAt(Timestamp videoCreatedAt) {
+        this.videoCreatedAt = videoCreatedAt;
+    }
+
+    public Timestamp getWatchedAt() {
+        return watchedAt;
+    }
+
+    public void setWatchedAt(Timestamp watchedAt) {
+        this.watchedAt = watchedAt;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
     public String toString() {
         return "History{" +
-                "username='" + username + '\'' +
+                "id=" + id +
+                ", username='" + username + '\'' +
                 ", userId=" + userId +
                 ", videoId=" + videoId +
                 ", videoTitle='" + videoTitle + '\'' +
                 ", videoThumbnail='" + videoThumbnail + '\'' +
-                ", createdAt=" + createdAt +
+                ", videoCreatedAt=" + videoCreatedAt +
+                ", watchedAt=" + watchedAt +
                 '}';
     }
 }

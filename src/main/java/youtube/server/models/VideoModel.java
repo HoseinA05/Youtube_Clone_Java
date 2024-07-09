@@ -1,23 +1,38 @@
-package youtube.server.database.model;
+package youtube.server.models;
 
 import org.postgresql.util.PSQLException;
 import youtube.server.database.DbManager;
 
-import java.security.MessageDigest;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Base64;
-import java.util.UUID;
+import java.util.Date;
 
 public class VideoModel {
+
+    public static String[] getPathsById(int id) throws Exception {
+        String query = "SELECT thumbnail_path,video_path FROM videos WHERE id=?";
+        var s = DbManager.db().prepareStatement(query);
+        s.setInt(1, id);
+        var res = s.executeQuery();
+        if (!res.next()) {
+            return null;
+        }
+        return new String[]{
+                res.getString("thumbnail_path"),
+                res.getString("video_path")
+        };
+    }
 
     // when user is signed in
     public static Video authGetVideoById(int id, int userId) throws Exception {
         String query = """
                     SELECT
                         V.id,
+                        V.is_private,
                         V.title,
                         COALESCE(V.description,'') AS description,
                         V.video_path,
@@ -31,7 +46,7 @@ public class VideoModel {
                         U.username,
                         V.created_at,
                         V.updated_at,
-                        V.thumbnail_path,
+                        COALESCE(V.thumbnail_path,'') AS thumbnail_path,
                         (SELECT EXISTS(SELECT FROM followings WHERE follower_id=? AND following_id=U.id)) AS is_subbed,
                         COALESCE(((SELECT is_like FROM likes WHERE likes.video_id=V.id AND likes.user_id=?)::INT),2) AS is_liked
                     FROM
@@ -52,6 +67,7 @@ public class VideoModel {
         }
         Video v = new Video();
         v.setId(res.getInt("id"));
+        v.setPrivate(res.getBoolean("is_private"));
         v.setTitle(res.getString("title"));
         v.setDescription(res.getString("description"));
         v.setVideoPath(res.getString("video_path"));
@@ -68,6 +84,8 @@ public class VideoModel {
         v.setThumbnailPath(res.getString("thumbnail_path"));
         v.setCurrentUserSubscribed(res.getBoolean("is_subbed"));
         v.setCurrentUserLike(LikeState.values()[res.getInt("is_liked")]);
+        HistoryModel.createHistory(id, userId);
+        increaseVideoView(id);
         return v;
     }
 
@@ -75,6 +93,7 @@ public class VideoModel {
         String query = """
                     SELECT
                         V.id,
+                        V.is_private,
                         V.title,
                         COALESCE(V.description,'') AS description,
                         V.video_path,
@@ -88,13 +107,13 @@ public class VideoModel {
                         U.username,
                         V.created_at,
                         V.updated_at,
-                        V.thumbnail_path
+                        COALESCE(V.thumbnail_path,'') AS thumbnail_path
                     FROM
                         videos AS V
                     JOIN users AS U
                         ON U.id = user_id
                     WHERE
-                        V.id=?;
+                        V.id=? AND V.is_private=FALSE;
                 """;
 
         var s = DbManager.db().prepareStatement(query);
@@ -105,6 +124,7 @@ public class VideoModel {
         }
         Video v = new Video();
         v.setId(res.getInt("id"));
+        v.setPrivate(res.getBoolean("is_private"));
         v.setTitle(res.getString("title"));
         v.setDescription(res.getString("description"));
         v.setVideoPath(res.getString("video_path"));
@@ -119,50 +139,110 @@ public class VideoModel {
         v.setCreatedAt(res.getTimestamp("created_at"));
         v.setUpdatedAt(res.getTimestamp("updated_at"));
         v.setThumbnailPath(res.getString("thumbnail_path"));
+        increaseVideoView(id);
         return v;
     }
 
-    public static int createVideo(String title, String description, String videoPath, int userId) throws Exception {
-        String query = "INSERT INTO videos (title,description,video_path,user_id,created_at) VALUES (?,?,?,?,?)";
-
+    public static int createVideo(String title, String description, String videoPath, boolean isPrivate, int userId) throws Exception {
+        String query = "INSERT INTO videos (title,description,video_path,user_id,is_private,created_at) VALUES (?,?,?,?,?,?)";
         var s = DbManager.db().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-        // String videoPath = UUID.randomUUID().toString().replace("-", ""); // TODO: should be replaced
-
         s.setString(1, title);
         s.setString(2, description);
         s.setString(3, videoPath);
         s.setInt(4, userId);
-        s.setTimestamp(5, new Timestamp(LocalDateTime.now().getNano()));
+        s.setBoolean(5, isPrivate);
+        s.setTimestamp(6, new Timestamp(new java.util.Date().getTime()));
 
-        s.executeUpdate();
+        try {
+            s.executeUpdate();
+        } catch (PSQLException ee) {
+            System.out.println(ee.getMessage());
+            if (ee.getSQLState().equals("23503")) { // foreign key violation
+                // throw new ModelError(ee.getMessage());
+                throw new ModelError("user not found");
+            }
+            throw ee;
+        }
         var res = s.getGeneratedKeys();
         if (!res.next()) {
             throw new Exception("ooops");
         }
-        return res.getInt(1);
+        int id = res.getInt(1);
+        NotificationModel.Notify.newVideoNotificationForUserFollowers(userId, id, title);
+        return id;
     }
 
-    public static boolean editVideo(String newTitle, String newDescription, int videoId, int userId) throws Exception {
-        String query = "UPDATE videos SET title=?,description=?,updated_at=? WHERE id=? AND user_id=?;";
+
+    private static void increaseVideoView(int videoId) throws Exception {
+        String query = "UPDATE videos SET view_count=(view_count+1),updated_at=? WHERE id=?;";
 
         var s = DbManager.db().prepareStatement(query);
 
-
-        s.setString(1, newTitle);
-        s.setString(2, newDescription);
-        s.setTimestamp(3, new Timestamp(LocalDateTime.now().getNano()));
-        s.setInt(4, videoId);
-        s.setInt(5, userId);
+        s.setTimestamp(1, new Timestamp(new java.util.Date().getTime()));
+        s.setInt(2, videoId);
 
         s.executeUpdate();
         System.out.println(s.getUpdateCount());
         if (s.getUpdateCount() <= 0) {
-            throw new ModelError("video not found");
+            throw new ModelError("video not found or not belong to user");
         }
-        return true;
     }
 
-    public static boolean deleteVideo(int id, int userId) throws Exception {
+    public static void setVideoPrivacy(boolean isPrivate, int videoId, int userId) throws Exception {
+        String query = "UPDATE videos SET is_private=?,updated_at=? WHERE id=? AND user_id=?;";
+
+        var s = DbManager.db().prepareStatement(query);
+
+        s.setBoolean(1, isPrivate);
+        s.setTimestamp(2, new Timestamp(new java.util.Date().getTime()));
+        s.setInt(3, videoId);
+        s.setInt(4, userId);
+
+        s.executeUpdate();
+        System.out.println(s.getUpdateCount());
+        if (s.getUpdateCount() <= 0) {
+            throw new ModelError("video not found or not belong to user");
+        }
+    }
+
+    public static void setVideoThumbnail(String thumbnailPath, int videoId, int userId) throws Exception {
+        String query = "UPDATE videos SET thumbnail_path=?,updated_at=? WHERE id=? AND user_id=?;";
+
+        var s = DbManager.db().prepareStatement(query);
+
+        s.setString(1, thumbnailPath);
+        s.setTimestamp(2, new Timestamp(new java.util.Date().getTime()));
+        s.setInt(3, videoId);
+        s.setInt(4, userId);
+
+        s.executeUpdate();
+        System.out.println(s.getUpdateCount());
+        if (s.getUpdateCount() <= 0) {
+            throw new ModelError("video not found or not belong to user");
+        }
+    }
+
+
+    public static void editVideo(String newTitle, String newDescription, boolean isPrivate, int videoId, int userId) throws Exception {
+        String query = "UPDATE videos SET title=?,description=?,is_private=?,updated_at=? WHERE id=? AND user_id=?;";
+
+        var s = DbManager.db().prepareStatement(query);
+
+        s.setString(1, newTitle);
+        s.setString(2, newDescription);
+        s.setBoolean(3, isPrivate);
+        s.setTimestamp(4, new Timestamp(new java.util.Date().getTime()));
+        s.setInt(5, videoId);
+        s.setInt(6, userId);
+
+        s.executeUpdate();
+        System.out.println(s.getUpdateCount());
+        if (s.getUpdateCount() <= 0) {
+            throw new ModelError("video not found or not belong to user");
+        }
+    }
+
+    public static void deleteVideo(int id, int userId) throws Exception {
         String query = "DELETE FROM videos WHERE id=? AND user_id=?;";
         var s = DbManager.db().prepareStatement(query);
         s.setInt(1, id);
@@ -171,27 +251,28 @@ public class VideoModel {
         s.executeUpdate();
         System.out.println(s.getUpdateCount());
         if (s.getUpdateCount() <= 0) {
-            throw new ModelError("video not found");
+            throw new ModelError("video not found or not belong to user");
         }
-        return true;
     }
 
-    public static ArrayList<Video> getUserVideos(int userId, int page, int perpage) throws Exception {
+    public static ArrayList<Video> getUserVideos(int userId, int sortType, int page, int perpage) throws Exception {
         String query = """
-                    SELECT
-                        V.id AS video_id,
-                        V.title,
-                        U.username,
-                        U.id AS user_id,
-                        (SELECT COUNT(*) FROM views WHERE views.video_id=V.id) AS views_count,
-                        V.thumbnail_path,
-                        V.created_at
-                    FROM
-                        videos AS V
-                    JOIN users AS U ON U.id = user_id
-                        WHERE V.user_id=?
-                    LIMIT ? OFFSET ?
-                    ORDER BY created_at;
+                SELECT
+                    V.id AS video_id,
+                    V.title,
+                    U.username,
+                    U.id AS user_id,
+                    V.view_count,
+                    COALESCE(V.thumbnail_path,'') AS thumbnail_path,
+                    V.created_at
+                FROM
+                    videos AS V
+                JOIN users AS U ON U.id = user_id
+                WHERE V.user_id=? AND V.is_private=FALSE
+                ---ORDER BY created_at
+                ORDER BY 
+                """ + Helper.getVideoOrderFromInt(sortType) + """
+                LIMIT ? OFFSET ?;
                 """;
         ArrayList<Video> videos = new ArrayList<>();
         var s = DbManager.db().prepareStatement(query);
@@ -205,7 +286,7 @@ public class VideoModel {
             v.setTitle(res.getString("title"));
             v.setUserName(res.getString("username"));
             v.setUserId(res.getInt("user_id"));
-            v.setViewsCount(res.getInt("views_count"));
+            v.setViewsCount(res.getInt("view_count"));
             v.setThumbnailPath(res.getString("thumbnail_path"));
             v.setCreatedAt(res.getTimestamp("created_at"));
             videos.add(v);
@@ -224,11 +305,12 @@ public class VideoModel {
                         U.username,
                         U.id AS user_id,
                         V.view_count,
-                        V.thumbnail_path,
+                        COALESCE(V.thumbnail_path,'') AS thumbnail_path,
                         V.created_at
                     FROM
                         videos AS V
                     JOIN users AS U ON U.id = user_id
+                    WHERE V.is_private=FALSE
                     ORDER BY created_at
                     LIMIT ? OFFSET ?;
                 """;
@@ -254,7 +336,8 @@ public class VideoModel {
         return videos;
     }
 
-    public static ArrayList<Video> getNewPopularVideos(int page, int perpage) throws Exception {
+    // trending videos
+    public static ArrayList<Video> getPopularVideosIn24H(int page, int perpage) throws Exception {
         String query = """
                     SELECT
                         V.id AS video_id,
@@ -262,18 +345,73 @@ public class VideoModel {
                         U.username,
                         U.id AS user_id,
                         V.view_count,
-                        V.thumbnail_path,
+                        COALESCE(V.thumbnail_path,'') AS thumbnail_path,
                         V.created_at
                     FROM
                         videos AS V
                     JOIN users AS U ON U.id = V.user_id
-                    ORDER BY V.view_count DESC,V.created_at 
+                    WHERE V.is_private=FALSE AND V.created_at>?
+                    ORDER BY V.view_count DESC,V.created_at
                     LIMIT ? OFFSET ?;
                 """;
         ArrayList<Video> videos = new ArrayList<>();
         var s = DbManager.db().prepareStatement(query);
-        s.setInt(1, perpage);
-        s.setInt(2, (perpage * page) - perpage);
+        s.setTimestamp(1, new Timestamp(new java.util.Date().getTime() - Duration.ofHours(24).toMillis()));
+        s.setInt(2, perpage);
+        s.setInt(3, (perpage * page) - perpage);
+        var res = s.executeQuery();
+        while (res.next()) {
+            Video v = new Video();
+            v.setId(res.getInt("video_id"));
+            v.setTitle(res.getString("title"));
+            v.setUserName(res.getString("username"));
+            v.setUserId(res.getInt("user_id"));
+            v.setViewsCount(res.getInt("view_count"));
+            v.setThumbnailPath(res.getString("thumbnail_path"));
+            v.setCreatedAt(res.getTimestamp("created_at"));
+            videos.add(v);
+        }
+        if (videos.isEmpty()) {
+            return null;
+        }
+        return videos;
+    }
+
+
+    public static ArrayList<Video> getPopularVideosOfSubscriptionsInWeek(int followerId, int page, int perpage) throws Exception {
+        String query = """
+                    SELECT
+                        V.id AS video_id,
+                        V.title,
+                        U.username,
+                        U.id AS user_id,
+                        V.view_count,
+                        COALESCE(V.thumbnail_path,'') AS thumbnail_path,
+                        V.created_at
+                    FROM
+                        videos AS V
+                    JOIN users AS U ON U.id = V.user_id
+                    WHERE
+                            V.is_private=FALSE
+                        AND
+                            U.id IN
+                            (
+                                SELECT
+                                    F.following_id
+                                FROM followings F
+                                WHERE F.follower_id=? LIMIT 10
+                            )
+                        AND
+                            V.created_at>?
+                    ORDER BY V.view_count DESC,V.created_at
+                    LIMIT ? OFFSET ?;
+                """;
+        ArrayList<Video> videos = new ArrayList<>();
+        var s = DbManager.db().prepareStatement(query);
+        s.setInt(1, followerId);
+        s.setTimestamp(2, new Timestamp(new java.util.Date().getTime() - Duration.ofDays(7).toMillis()));
+        s.setInt(3, perpage);
+        s.setInt(4, (perpage * page) - perpage);
         var res = s.executeQuery();
         while (res.next()) {
             Video v = new Video();
@@ -318,34 +456,42 @@ public class VideoModel {
         return videos;
     }
 
-
     /// video likes
-    public static boolean setVideoLike(boolean isLike, int videoId, int userId) throws Exception {
+    public static void setVideoLike(boolean isLike, int videoId, int userId) throws Exception {
         String query = "INSERT INTO likes (user_id,video_id,is_like,created_at) VALUES (?,?,?,?);";
         var s = DbManager.db().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
         s.setInt(1, userId);
         s.setInt(2, videoId);
         s.setBoolean(3, isLike);
-        s.setTimestamp(4, new Timestamp(LocalDateTime.now().getNano()));
+        s.setTimestamp(4, new Timestamp(new java.util.Date().getTime()));
 
         try {
             s.executeUpdate();
         } catch (PSQLException ee) {
+            System.out.println(ee.getMessage());
+            if (ee.getSQLState().equals("23503")) { // foreign key violation
+                throw new ModelError(ee.getMessage());
+                // throw new ModelError("user not found");
+            }
             if (ee.getSQLState().equals("23505")) {
                 System.out.println("duplicate key !!!");
-                throw new ModelError(ee.getMessage());
+                // throw new ModelError(ee.getMessage());
+                throw new ModelError("video already liked/disliked");
             }
             throw ee;
         }
-        var res = s.getGeneratedKeys();
-        if (!res.next()) {
-            return false;
+        var n = s.getUpdateCount();
+        if (n <= 0) {
+            throw new ModelError("failed to set like/dislike");
         }
-        return true;
+        if (isLike){
+            PlaylistModel.addVideoToLikeList(videoId,userId);
+        }
+        NotificationModel.Notify.newVideoLike(videoId, userId, isLike);
     }
 
-    public static boolean removeVideoLike(int videoId, int userId) throws Exception {
+    public static void removeVideoLike(int videoId, int userId) throws Exception {
         String query = "DELETE FROM likes WHERE user_id=? AND video_id=?;";
         var s = DbManager.db().prepareStatement(query);
 
@@ -355,14 +501,13 @@ public class VideoModel {
         s.executeUpdate();
         var n = s.getUpdateCount();
         if (n <= 0) {
-            return false;
+            throw new ModelError("failed to remove like/dislike"); // user or video not found or user not liked/disliked
+            // throw new ModelError("video not found or user not made the video or video not liked/disliked");
         }
-        return true;
     }
 
-
     /// video tags
-    public static boolean addTagToVideo(int videoId, String tagName, int userId) throws Exception {
+    public static void addTagToVideo(int videoId, String tagName, int userId) throws Exception {
         createTag(tagName); // assuring tag already exist before adding tag to video
         String query = """
                     INSERT INTO video_tags
@@ -376,7 +521,7 @@ public class VideoModel {
 
         s.setInt(1, videoId);
         s.setString(2, tagName);
-        s.setTimestamp(3, new Timestamp(LocalDateTime.now().getNano()));
+        s.setTimestamp(3, new Timestamp(new java.util.Date().getTime()));
         s.setInt(4, videoId);
         s.setInt(5, userId);
 
@@ -396,9 +541,9 @@ public class VideoModel {
         var n = s.getUpdateCount();
         if (n == 0) {
             // return  false;
-            throw new Exception("failed to add tag"); // video not exist or user not made the video
+            // throw new ModelError("failed to add tag"); // video not exist or user not made the video
+            throw new ModelError("video not exist or user not made the video");
         }
-        return true;
     }
 
     private static void createTag(String tagName) {
@@ -407,15 +552,15 @@ public class VideoModel {
             var s = DbManager.db().prepareStatement(query);
 
             s.setString(1, tagName);
-            s.setTimestamp(2, new Timestamp(LocalDateTime.now().getNano()));
+            s.setTimestamp(2, new Timestamp(new java.util.Date().getTime()));
 
             s.executeUpdate();
         } catch (Exception e) {
-            System.out.println("failed to create tag:" + e.getMessage());
+            System.out.println("tag already created");
         }
     }
 
-    public static boolean removeTagFromVideo(String tagName, int videoId, int userId) throws Exception {
+    public static void removeTagFromVideo(String tagName, int videoId, int userId) throws Exception {
         String query = """
                 DELETE FROM
                     video_tags
@@ -436,61 +581,82 @@ public class VideoModel {
         s.executeUpdate();
         var n = s.getUpdateCount();
         if (n <= 0) {
-            throw new ModelError("failed to remove tag"); // video not exist or tag not exist or video doesnt have ther tag or user hasnt made the video
-            // return false;
+            // throw new ModelError("failed to remove tag"); // video not exist or tag not exist or video doesnt have ther tag or user hasnt made the video
+            throw new ModelError("video or tag not exist or user not made the video");
         }
-        return true;
     }
 
     /// playlist videos
 
-    public static boolean addVideoToPlaylist(int playlistId, int videoId, int order, int userId) throws Exception {
+    public static void addVideoToPlaylist(int playlistId, int videoId, int order, int adminUserId) throws Exception {
         String query = """
                 INSERT INTO playlist_videos
-                        (playlist_id,video_id,custom_order)
-                SELECT
-                    ?,?,?
-                WHERE EXISTS(SELECT user_id FROM playlists WHERE playlists.user_id=? AND playlists.id=?);
+                        (playlist_id,video_id,custom_order,admin_id)
+                VALUES
+                    (
+                        ?,
+                        ?,
+                        ?,
+                        (SELECT PA.id FROM playlist_admins PA WHERE PA.playlist_id=? AND PA.user_id=?)
+                    );
                 """;
         var s = DbManager.db().prepareStatement(query);
 
         s.setInt(1, playlistId);
         s.setInt(2, videoId);
         s.setInt(3, order);
-        s.setInt(4, userId);
-        s.setInt(5, playlistId);
-        var res = s.executeUpdate();
+        s.setInt(4, playlistId);
+        s.setInt(5, adminUserId);
+
+        try {
+            s.executeUpdate();
+        } catch (PSQLException ee) {
+            System.out.println(ee.getMessage());
+            System.out.println(ee.getSQLState());
+            if (ee.getSQLState().equals("23502")) { // not null violaiton
+                throw new ModelError("collaborator or playlist not found");
+                // throw new ModelError("collaborator not found");
+            }
+            if (ee.getSQLState().equals("23503")) { // foreign key violation
+                // throw new ModelError(ee.getMessage());
+                throw new ModelError("video not found");
+            }
+            if (ee.getSQLState().equals("23505")) { // unique key violation
+                // throw new ModelError(ee.getMessage());
+                throw new ModelError("video already added to playlist");
+            }
+            throw ee;
+        }
+
         var n = s.getUpdateCount();
         if (n <= 0) {
-            throw new ModelError("failed to add video to playlist");
-            // return false;
+            // throw new ModelError("failed to add video to playlist");
+            throw new ModelError("ooops");
         }
-        return true;
+        NotificationModel.Notify.videoAddedToPlaylist(adminUserId, videoId, playlistId);
     }
 
-    public static boolean editVideoFromPlaylist(int playlistId, int videoId, int newOrder, int userId) throws Exception {
+    public static void editVideoFromPlaylist(int playlistId, int videoId, int newOrder, int adminUserId) throws Exception {
         String query = """
                     UPDATE playlist_videos
                         SET custom_order=?
-                    WHERE playlist_id=? AND video_id=? AND EXISTS(SELECT user_id FROM playlists WHERE playlists.user_id=? AND playlists.id=?);
+                    WHERE playlist_id=? AND video_id=? AND admin_id=(SELECT PA.id FROM playlist_admins PA WHERE PA.playlist_id=? AND PA.user_id=?);
                 """;
         var s = DbManager.db().prepareStatement(query);
 
         s.setInt(1, newOrder);
         s.setInt(2, playlistId);
         s.setInt(3, videoId);
-        s.setInt(4, userId);
-        s.setInt(5, playlistId);
+        s.setInt(4, playlistId);
+        s.setInt(5, adminUserId);
         var res = s.executeUpdate();
         var n = s.getUpdateCount();
         if (n <= 0) {
             throw new ModelError("failed to edit video of playlist");
-            // return false;
         }
-        return true;
     }
 
-    public static boolean removeVideoFromPlaylist(int playlistId, int videoId, int userId) throws Exception {
+    public static void removeVideoFromPlaylist(int playlistId, int videoId, int adminUserId) throws Exception {
         String query = """
                 DELETE FROM
                     playlist_videos
@@ -499,14 +665,14 @@ public class VideoModel {
                     AND
                     video_id=?
                     AND
-                    EXISTS(SELECT user_id FROM playlists WHERE playlists.user_id=? AND playlists.id=?);
+                    admin_id=(SELECT PA.id FROM playlist_admins PA WHERE PA.playlist_id=? AND PA.user_id=?);
                 """;
         var s = DbManager.db().prepareStatement(query);
 
         s.setInt(1, playlistId);
         s.setInt(2, videoId);
-        s.setInt(3, userId);
-        s.setInt(4, playlistId);
+        s.setInt(3, playlistId);
+        s.setInt(4, adminUserId);
 
         s.executeUpdate();
         var n = s.getUpdateCount();
@@ -514,21 +680,35 @@ public class VideoModel {
             throw new ModelError("failed to remove video from playlist");
             // return false;
         }
-        return true;
+        NotificationModel.Notify.videoRemovedFromPlaylist(adminUserId, videoId, playlistId);
     }
 
     public static ArrayList<PlaylistVideo> getVideosOfPlaylist(int playlistId, int page, int perpage) throws Exception {
         String query = """
                 SELECT
-                    PV.playlist_id,PV.custom_order,PV.video_id,U.username,V.thumbnail_path,V.title,V.created_at,V.view_count
+                    PV.playlist_id,
+                    PV.custom_order,
+                    PV.video_id,
+                    PV.created_at AS added_at,
+                    U1.username AS video_creator,
+                    COALESCE(V.thumbnail_path,'') AS thumbnail_path,
+                    V.title,
+                    V.created_at,
+                    U2.username AS adder_username,
+                    U2.id AS adder_userId,
+                    V.view_count
                 FROM
                     playlist_videos PV
                 JOIN videos V ON
                     V.id = PV.video_id
-                JOIN users U ON
-                    U.id=V.user_id
+                JOIN users U1 ON
+                    U1.id=V.user_id
+                JOIN playlist_admins PA ON
+                    PA.id=PV.admin_id
+                JOIN users U2 ON
+                    U2.id=PA.user_id
                 WHERE
-                    playlist_id = ?
+                    PV.playlist_id = ? AND V.is_private=FALSE
                 ORDER BY PV.custom_order,PV.created_at
                 LIMIT ? OFFSET ?;
                 """;
@@ -544,10 +724,13 @@ public class VideoModel {
             p.setPlaylistId(res.getInt("playlist_id"));
             p.setOrder(res.getInt("custom_order"));
             p.setVideoId(res.getInt("video_id"));
-            p.setVideoCreator(res.getString("username"));
+            p.setAddedAt(res.getTimestamp("added_at"));
+            p.setVideoCreator(res.getString("video_creator"));
             p.setVideoThumbnail(res.getString("thumbnail_path"));
             p.setVideoTitle(res.getString("title"));
             p.setVideoCreatedAt(res.getTimestamp("created_at"));
+            p.setAdderUserID(res.getInt("adder_userId"));
+            p.setAdderUsername(res.getString("adder_username"));
             p.setVideoViewCount(res.getInt("view_count"));
             ps.add(p);
         }

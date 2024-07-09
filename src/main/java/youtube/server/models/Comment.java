@@ -1,4 +1,4 @@
-package youtube.server.database.model;
+package youtube.server.models;
 
 import java.sql.Timestamp;
 
