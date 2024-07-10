@@ -15,6 +15,7 @@ public class PlaylistVideo {
     private String videoTitle;
     private Timestamp videoCreatedAt;
     private String videoCreator;
+    private int videoCreatorUserId;
 
     public int getPlaylistId() {
         return PlaylistId;
@@ -119,5 +120,13 @@ public class PlaylistVideo {
                 ", videoCreatedAt=" + videoCreatedAt +
                 ", videoCreator='" + videoCreator + '\'' +
                 '}';
+    }
+
+    public int getVideoCreatorUserId() {
+        return videoCreatorUserId;
+    }
+
+    public void setVideoCreatorUserId(int videoCreatorUserId) {
+        this.videoCreatorUserId = videoCreatorUserId;
     }
 }

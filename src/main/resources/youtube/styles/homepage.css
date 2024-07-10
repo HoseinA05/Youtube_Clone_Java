@@ -1,4 +1,4 @@
-Button {
+Button,ImageView,.userLabel {
     -fx-cursor: hand;
 }
 
@@ -27,4 +27,18 @@ Button {
 .bottomProgress{
     -fx-background-color: red;
     -fx-alignment: center;
+}
+
+.videosTitle{
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+    -fx-padding: 5px 20px;
+    -fx-text-fill: color1;
+}
+
+.tilepane{
+    -fx-padding: 10px;
+    -fx-pref-columns: 4;
+    -fx-hgap: 35;
+    -fx-vgap: 30
 }

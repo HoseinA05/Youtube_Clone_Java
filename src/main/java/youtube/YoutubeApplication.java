@@ -1,12 +1,10 @@
 package youtube;
 
-import javafx.event.EventHandler;
-import javafx.scene.input.MouseEvent;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import youtube.client.DataService;
+import youtube.client.RequestHandler;
 import youtube.client.controllers.HomepageController;
 
 import java.io.IOException;
@@ -14,23 +12,11 @@ import java.io.IOException;
 public class YoutubeApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        DataService dataService = new DataService();
-
+        // RequestHandler dataService = new RequestHandler();
         FXMLLoader fxmlLoader = new FXMLLoader(YoutubeApplication.class.getResource("homepage.fxml"));
-        fxmlLoader.setController(new HomepageController(dataService, false));
+        fxmlLoader.setController(new HomepageController(false));
 
         Scene scene = new Scene(fxmlLoader.load(), 1200, 600);
-        scene.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent doubleClicked) {
-                if(doubleClicked.getClickCount() == 2)
-                {
-                    stage.setFullScreen(true);
-                    stage.show();
-                }
-
-            }
-        });
 
         scene.getStylesheets().addAll(
                 getClass().getResource("styles/homepage.css").toExternalForm(),
@@ -44,6 +30,7 @@ public class YoutubeApplication extends Application {
     }
 
     public static void main(String[] args) {
+        RequestHandler.connectToServer();
         launch();
     }
 }

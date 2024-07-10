@@ -1,5 +1,11 @@
-Button {
+Button, .tag  {
     -fx-cursor: hand;
+}
+
+.rvContainer{
+    -fx-cursor: hand;
+    -fx-spacing: 10px;
+    -fx-pref-height: 90px;
 }
 
 #centerScrollpane {
@@ -34,6 +40,7 @@ Button {
     -fx-text-fill: color1;
 }
 .channelName{
+    -fx-cursor: hand;
     -fx-text-fill: color1;
     -fx-font-size: 14px;
     -fx-font-weight: bold;
@@ -55,8 +62,7 @@ Button {
     -fx-background-color: hoverBg;
     -fx-padding: 8px 15px;
 }
-.videoBtns > SVGPath{
-    -fx-fill: transparent;
+.videoBtns > SVGPath {
     -fx-stroke: svgColor;
     -fx-stroke-type: inside;
 }
@@ -116,10 +122,10 @@ Button {
     -fx-background-color: hoverBg;
 }
 .commentBtn > SVGPath {
-    -fx-fill: transparent;
     -fx-stroke: svgColor;
     -fx-stroke-type: inside;
 }
+
 .commentLikeCount{
     -fx-background-color: transparent;
     -fx-text-fill: color2;
@@ -197,4 +203,12 @@ Button {
     -fx-background-color: white;
     -fx-pref-width: 12px;
     -fx-pref-height: 12px;
+}
+
+.tag{
+    -fx-font-size: 14px;
+    -fx-text-fill: color1;
+    -fx-background-color: hoverBg;
+    -fx-background-radius: 10px;
+    -fx-padding: 8px;
 }

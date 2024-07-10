@@ -12,6 +12,7 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.layout.Pane?>
 <!--<BorderPane id="container" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="youtube.client.controllers.SigninController" >-->
+<?import javafx.scene.layout.AnchorPane?>
 <BorderPane id="container" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
     <top>
         <HBox id="topContainer">
@@ -49,9 +50,12 @@
 
             <HBox styleClass="btnsContainer">
                 <Button id="signinBtn" text="Create account" onAction="#createAccountBtnHandler"/>
-                <Button id="signupBtn" text="Sign In"/>
+                <Button id="signupBtn" text="Sign In" onAction="#signInBtnHandler"/>
             </HBox>
         </VBox>
     </center>
 
+    <bottom>
+        <Label fx:id="toastText" styleClass="toastText"/>
+    </bottom>
 </BorderPane>

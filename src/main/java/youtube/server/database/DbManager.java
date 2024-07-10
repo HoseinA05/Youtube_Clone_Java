@@ -10,7 +10,7 @@ public class DbManager {
         String addr = "jdbc:postgresql://localhost:5432/";
         String database = "youtube";
         String user = "postgres";
-        String password = "h";
+        String password = "1234";
 
         try {
             Class.forName("org.postgresql.Driver");

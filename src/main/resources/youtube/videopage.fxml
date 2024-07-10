@@ -20,6 +20,8 @@
 <?import javafx.geometry.Insets?>
 
 <!--<BorderPane prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="youtube.client.controllers.VideopageController">-->
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.control.ProgressIndicator?>
 <BorderPane fx:id="mainPane" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
     <!-- Top navigation bar -->
     <top>
@@ -49,19 +51,26 @@
                 </Button>
             </HBox>
 
-            <!-- Three dots -->
-            <Button id="threeDotsBtn" onAction="#toggleTheme" styleClass="menuBtn">
+            <!-- Darkmode -->
+            <Button id="darkmode" onAction="#toggleTheme" styleClass="menuBtn">
                 <graphic>
-                    <SVGPath content="M12 16.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5.67-1.5 1.5-1.5zM10.5 12c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5-1.5.67-1.5 1.5zm0-6c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5-1.5.67-1.5 1.5z" fill="black" />
+                    <SVGPath content="M12 22C10.93 22 9.86998 21.83 8.83998 21.48L7.41998 21.01L8.83998 20.54C12.53 19.31 15 15.88 15 12C15 8.12 12.53 4.69 8.83998 3.47L7.41998 2.99L8.83998 2.52C9.86998 2.17 10.93 2 12 2C17.51 2 22 6.49 22 12C22 17.51 17.51 22 12 22ZM10.58 20.89C11.05 20.96 11.53 21 12 21C16.96 21 21 16.96 21 12C21 7.04 16.96 3 12 3C11.53 3 11.05 3.04 10.58 3.11C13.88 4.81 16 8.21 16 12C16 15.79 13.88 19.19 10.58 20.89Z"/>
                 </graphic>
             </Button>
 
             <!-- Sign in -->
-            <Button id="signInBtn" graphicTextGap="10" text="Sign in" onAction="#signinBtnHandler">
+            <Button fx:id="signinBtn" id="signInBtn" graphicTextGap="10" text="Sign in" onAction="#signinBtnHandler">
                 <graphic>
-                    <SVGPath fill="#3ea6ff" content="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 1c4.96 0 9 4.04 9 9 0 1.42-.34 2.76-.93 3.96-1.53-1.72-3.98-2.89-7.38-3.03A3.996 3.996 0 0016 9c0-2.21-1.79-4-4-4S8 6.79 8 9c0 1.97 1.43 3.6 3.31 3.93-3.4.14-5.85 1.31-7.38 3.03C3.34 14.76 3 13.42 3 12c0-4.96 4.04-9 9-9zM9 9c0-1.65 1.35-3 3-3s3 1.35 3 3-1.35 3-3 3-3-1.35-3-3zm3 12c-3.16 0-5.94-1.64-7.55-4.12C6.01 14.93 8.61 13.9 12 13.9c3.39 0 5.99 1.03 7.55 2.98C17.94 19.36 15.16 21 12 21z" />
+                    <SVGPath fill="#3ea6ff" content="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 1c4.96 0 9 4.04 9 9 0 1.42-.34 2.76-.93 3.96-1.53-1.72-3.98-2.89-7.38-3.03A3.996 3.996 0 0016 9c0-2.21-1.79-4-4-4S8 6.79 8 9c0 1.97 1.43 3.6 3.31 3.93-3.4.14-5.85 1.31-7.38 3.03C3.34 14.76 3 13.42 3 12c0-4.96 4.04-9 9-9zM9 9c0-1.65 1.35-3 3-3s3 1.35 3 3-1.35 3-3 3-3-1.35-3-3zm3 12c-3.16 0-5.94-1.64-7.55-4.12C6.01 14.93 8.61 13.9 12 13.9c3.39 0 5.99 1.03 7.55 2.98C17.94 19.36 15.16 21 12 21z"/>
                 </graphic>
             </Button>
+
+<!--             Dashboard button-->
+            <HBox fx:id="dashboardContainer" alignment="CENTER" visible="false" managed="false">
+                <ImageView fx:id="dashboardImg" fitWidth="40" fitHeight="40" preserveRatio="false"/>
+
+                <Button fx:id="dashboardBtn" alignment="CENTER" styleClass="dashboardBtn" text="username..." onAction="#dashboardBtnHandler" />
+            </HBox>
 
         </HBox>
     </top>
@@ -72,7 +81,7 @@
             <AnchorPane>
 
                 <!-- Minimized Left Menu -->
-                <VBox fx:id="leftPanelMin" styleClass="leftPanelContainer" prefWidth="70" AnchorPane.bottomAnchor="0" AnchorPane.topAnchor="0">
+                <VBox fx:id="leftPanelMin" styleClass="leftPanelContainer" visible="false" managed="false" prefWidth="70" AnchorPane.bottomAnchor="0" AnchorPane.topAnchor="0">
 
                     <HBox>
                         <Button graphicTextGap="10" maxWidth="Infinity" styleClass="menuBtnMin, selected" text="Home" HBox.hgrow="ALWAYS" contentDisplay="TOP" alignment="CENTER">
@@ -137,30 +146,30 @@
                     <!-- Subscribe and Like Area -->
                     <HBox spacing="10" alignment="CENTER">
                         <!-- Profile Image -->
-                        <ImageView fx:id="profImg" fitWidth="45" fitHeight="45">
+                        <ImageView fx:id="profImg" style="-fx-cursor: hand;" fitWidth="45" fitHeight="45">
                             <Image url="@testImg.jpg" />
                         </ImageView>
 
                         <!-- Channel Name and Subscribers -->
                         <VBox spacing="2">
-                            <Label styleClass="channelName" text="The Hossein" />
-                            <Label styleClass="videoInfo" text="228K Subscribers"/>
+                            <Label fx:id="channelName" styleClass="channelName" text="The Hossein" />
+                            <Label fx:id="subsCount" styleClass="videoInfo" text="228K Subscribers"/>
                         </VBox>
 
                         <!-- Subscribe Button -->
-                        <Button id="subscribeBtn" text="Subscribe"/>
+                        <Button fx:id="subscribeBtn" id="subscribeBtn" text="Subscribe" onAction="#subscribeBtnHandler"/>
                         <Pane HBox.hgrow="ALWAYS"/>
 
                         <!-- Like and Dislike Buttons -->
                         <HBox>
-                            <Button id="likeBtn" graphicTextGap="10" text="40K" maxWidth="Infinity" styleClass="videoBtns" HBox.hgrow="ALWAYS" alignment="CENTER">
+                            <Button fx:id="likeBtn" id="likeBtn" graphicTextGap="10" text="40K" maxWidth="Infinity" styleClass="videoBtns" HBox.hgrow="ALWAYS" alignment="CENTER" onAction="#likeBtnHandler">
                                 <graphic>
-                                    <SVGPath content="M18.77,11h-4.23l1.52-4.94C16.38,5.03,15.54,4,14.38,4c-0.58,0-1.14,0.24-1.52,0.65L7,11H3v10h4h1h9.43 c1.06,0,1.98-0.67,2.19-1.61l1.34-6C21.23,12.15,20.18,11,18.77,11z M7,20H4v-8h3V20z M19.98,13.17l-1.34,6 C18.54,19.65,18.03,20,17.43,20H8v-8.61l5.6-6.06C13.79,5.12,14.08,5,14.38,5c0.26,0,0.5,0.11,0.63,0.3 c0.07,0.1,0.15,0.26,0.09,0.47l-1.52,4.94L13.18,12h1.35h4.23c0.41,0,0.8,0.17,1.03,0.46C19.92,12.61,20.05,12.86,19.98,13.17z" />
+                                    <SVGPath styleClass="svg" content="M18.77,11h-4.23l1.52-4.94C16.38,5.03,15.54,4,14.38,4c-0.58,0-1.14,0.24-1.52,0.65L7,11H3v10h4h1h9.43 c1.06,0,1.98-0.67,2.19-1.61l1.34-6C21.23,12.15,20.18,11,18.77,11z M7,20H4v-8h3V20z M19.98,13.17l-1.34,6 C18.54,19.65,18.03,20,17.43,20H8v-8.61l5.6-6.06C13.79,5.12,14.08,5,14.38,5c0.26,0,0.5,0.11,0.63,0.3 c0.07,0.1,0.15,0.26,0.09,0.47l-1.52,4.94L13.18,12h1.35h4.23c0.41,0,0.8,0.17,1.03,0.46C19.92,12.61,20.05,12.86,19.98,13.17z" />
                                 </graphic>
                             </Button>
-                            <Button id="dislikeBtn" maxWidth="Infinity" text=" " styleClass="videoBtns" HBox.hgrow="ALWAYS" alignment="CENTER">
+                            <Button fx:id="dislikeBtn" id="dislikeBtn" maxWidth="Infinity" text=" " styleClass="videoBtns" HBox.hgrow="ALWAYS" alignment="CENTER" onAction="#dislikeBtnHandler">
                                 <graphic>
-                                    <SVGPath content="M17,4h-1H6.57C5.5,4,4.59,4.67,4.38,5.61l-1.34,6C2.77,12.85,3.82,14,5.23,14h4.23l-1.52,4.94C7.62,19.97,8.46,21,9.62,21 c0.58,0,1.14-0.24,1.52-0.65L17,14h4V4H17z M10.4,19.67C10.21,19.88,9.92,20,9.62,20c-0.26,0-0.5-0.11-0.63-0.3 c-0.07-0.1-0.15-0.26-0.09-0.47l1.52-4.94l0.4-1.29H9.46H5.23c-0.41,0-0.8-0.17-1.03-0.46c-0.12-0.15-0.25-0.4-0.18-0.72l1.34-6 C5.46,5.35,5.97,5,6.57,5H16v8.61L10.4,19.67z M20,13h-3V5h3V13z" />
+                                    <SVGPath styleClass="svg" content="M17,4h-1H6.57C5.5,4,4.59,4.67,4.38,5.61l-1.34,6C2.77,12.85,3.82,14,5.23,14h4.23l-1.52,4.94C7.62,19.97,8.46,21,9.62,21 c0.58,0,1.14-0.24,1.52-0.65L17,14h4V4H17z M10.4,19.67C10.21,19.88,9.92,20,9.62,20c-0.26,0-0.5-0.11-0.63-0.3 c-0.07-0.1-0.15-0.26-0.09-0.47l1.52-4.94l0.4-1.29H9.46H5.23c-0.41,0-0.8-0.17-1.03-0.46c-0.12-0.15-0.25-0.4-0.18-0.72l1.34-6 C5.46,5.35,5.97,5,6.57,5H16v8.61L10.4,19.67z M20,13h-3V5h3V13z" />
                                 </graphic>
                             </Button>
                         </HBox>
@@ -169,14 +178,17 @@
 
                 <!-- Video Description -->
                 <VBox id="videoDescContainer" spacing="2">
-                    <Label id="videoInformation" text="821,792 views  Aug 24, 2023" />
-                    <Label id="videoDescription" wrapText="true" text="Video Description..." />
+                    <Label fx:id="videoInfo" id="videoInformation" text="821,792 views  Aug 24, 2023" />
+                    <Label fx:id="videoDescription" id="videoDescription" wrapText="true" text="Video Description..." />
                 </VBox>
 
+                <TilePane fx:id="tagsContainer" style="-fx-hgpa: 2; -fx-vgap: 2">
+
+                </TilePane>
 
                 <!-- Comments Section -->
-                <VBox spacing="20">
-                    <Label styleClass="mainVideoTitle" text="1,004 Comments"/>
+                <VBox fx:id="commentsContainerfx" spacing="20">
+                    <Label fx:id="commentCount" styleClass="mainVideoTitle" text="1,004 Comments"/>
 
                     <!-- Add a Comment -->
                     <HBox spacing="10" alignment="CENTER">
@@ -281,100 +293,11 @@
 
     <right>
         <ScrollPane fx:id="rightScrollpane" id="rightScrollpane" hbarPolicy="NEVER" fitToWidth="true">
-            <VBox styleClass="rightContainer" prefWidth="400" spacing="4">
+            <VBox fx:id="rightContainer" styleClass="rightContainer" prefWidth="400" spacing="4">
+
                 <!-- Recommended Video Item -->
-                <HBox spacing="10" prefHeight="90">
+                <HBox styleClass="rvContainer">
                     <ImageView fx:id="img" fitWidth="150" fitHeight="90">
-                        <Image url="@testImg.jpg" />
-                    </ImageView>
-
-                    <VBox spacing="5">
-                        <Label styleClass="videoTitle" wrapText="true" text="Video Title Video Title Video Title" />
-                        <VBox>
-                            <Label styleClass="videoInfo" text="The Hossein"/>
-                            <Label styleClass="videoInfo" text="1M views • 1 year ago"/>
-                        </VBox>
-                    </VBox>
-                </HBox>
-
-                <!-- Recommended Video Item -->
-                <HBox spacing="10" prefHeight="90">
-                    <ImageView fitWidth="150" fitHeight="90">
-                        <Image url="@testImg.jpg" />
-                    </ImageView>
-
-                    <VBox spacing="5">
-                        <Label styleClass="videoTitle" wrapText="true" text="Video Title Video Title Video Title" />
-                        <VBox>
-                            <Label styleClass="videoInfo" text="The Hossein"/>
-                            <Label styleClass="videoInfo" text="1M views • 1 year ago"/>
-                        </VBox>
-                    </VBox>
-                </HBox>
-
-                <!-- Recommended Video Item -->
-                <HBox spacing="10" prefHeight="90">
-                    <ImageView fitWidth="150" fitHeight="90">
-                        <Image url="@testImg.jpg" />
-                    </ImageView>
-
-                    <VBox spacing="5">
-                        <Label styleClass="videoTitle" wrapText="true" text="Video Title Video Title Video Title" />
-                        <VBox>
-                            <Label styleClass="videoInfo" text="The Hossein"/>
-                            <Label styleClass="videoInfo" text="1M views • 1 year ago"/>
-                        </VBox>
-                    </VBox>
-                </HBox>
-
-                <!-- Recommended Video Item -->
-                <HBox spacing="10" prefHeight="90">
-                    <ImageView fitWidth="150" fitHeight="90">
-                        <Image url="@testImg.jpg" />
-                    </ImageView>
-
-                    <VBox spacing="5">
-                        <Label styleClass="videoTitle" wrapText="true" text="Video Title Video Title Video Title" />
-                        <VBox>
-                            <Label styleClass="videoInfo" text="The Hossein"/>
-                            <Label styleClass="videoInfo" text="1M views • 1 year ago"/>
-                        </VBox>
-                    </VBox>
-                </HBox>
-
-                <!-- Recommended Video Item -->
-                <HBox spacing="10" prefHeight="90">
-                    <ImageView fitWidth="150" fitHeight="90">
-                        <Image url="@testImg.jpg" />
-                    </ImageView>
-
-                    <VBox spacing="5">
-                        <Label styleClass="videoTitle" wrapText="true" text="Video Title Video Title Video Title" />
-                        <VBox>
-                            <Label styleClass="videoInfo" text="The Hossein"/>
-                            <Label styleClass="videoInfo" text="1M views • 1 year ago"/>
-                        </VBox>
-                    </VBox>
-                </HBox>
-
-                <!-- Recommended Video Item -->
-                <HBox spacing="10" prefHeight="90">
-                    <ImageView fitWidth="150" fitHeight="90">
-                        <Image url="@testImg.jpg" />
-                    </ImageView>
-
-                    <VBox spacing="5">
-                        <Label styleClass="videoTitle" wrapText="true" text="Video Title Video Title Video Title" />
-                        <VBox>
-                            <Label styleClass="videoInfo" text="The Hossein"/>
-                            <Label styleClass="videoInfo" text="1M views • 1 year ago"/>
-                        </VBox>
-                    </VBox>
-                </HBox>
-
-                <!-- Recommended Video Item -->
-                <HBox spacing="10" prefHeight="90">
-                    <ImageView fitWidth="150" fitHeight="90">
                         <Image url="@testImg.jpg" />
                     </ImageView>
 
@@ -391,7 +314,4 @@
         </ScrollPane>
     </right>
 
-<!--    <bottom>-->
-<!--        <HBox style="-fx-background-color: transparent;"/>-->
-<!--    </bottom>-->
 </BorderPane>

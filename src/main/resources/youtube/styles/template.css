@@ -13,6 +13,18 @@
 
 }
 
+#darkmodeBtn{
+    -fx-background-color: transparent;
+}
+#darkmodeBtn > SVGPath {
+    -fx-stroke: svgColor;
+}
+.toastText{
+    -fx-font-size: 18px;
+    -fx-background-radius: 20;
+    -fx-background-color: rgba(0, 0, 0, 0.2);
+    -fx-padding: 10px;
+}
 .menuBtn{
     -fx-background-color: transparent;
     -fx-font-size: 16px;
@@ -95,5 +107,21 @@
     -fx-background-color: transparent;
 }
 #signInBtn:hover {
+    -fx-background-color: #263850;
+}
+
+.dashboardBtn{
+    -fx-font-size: 14px;
+    -fx-text-fill: #3ea6ff;
+    -fx-font-weight: bold;
+    -fx-border-color: #e5e5e5;
+    -fx-border-width: 1px;
+    -fx-border-radius: 40;
+    -fx-background-radius: 40;
+    -fx-pref-height: 40px;
+    -fx-padding: 10px;
+    -fx-background-color: transparent;
+}
+.dashboardBtn:hover {
     -fx-background-color: #263850;
 }

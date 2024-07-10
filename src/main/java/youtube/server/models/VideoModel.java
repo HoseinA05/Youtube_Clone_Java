@@ -47,6 +47,7 @@ public class VideoModel {
                         V.created_at,
                         V.updated_at,
                         COALESCE(V.thumbnail_path,'') AS thumbnail_path,
+                        COALESCE(U.profile_photo_path,'') AS profile_photo_path,
                         (SELECT EXISTS(SELECT FROM followings WHERE follower_id=? AND following_id=U.id)) AS is_subbed,
                         COALESCE(((SELECT is_like FROM likes WHERE likes.video_id=V.id AND likes.user_id=?)::INT),2) AS is_liked
                     FROM
@@ -82,6 +83,7 @@ public class VideoModel {
         v.setCreatedAt(res.getTimestamp("created_at"));
         v.setUpdatedAt(res.getTimestamp("updated_at"));
         v.setThumbnailPath(res.getString("thumbnail_path"));
+        v.setUserProfilePhotoPath(res.getString("profile_photo_path"));
         v.setCurrentUserSubscribed(res.getBoolean("is_subbed"));
         v.setCurrentUserLike(LikeState.values()[res.getInt("is_liked")]);
         HistoryModel.createHistory(id, userId);
@@ -107,6 +109,7 @@ public class VideoModel {
                         U.username,
                         V.created_at,
                         V.updated_at,
+                        COALESCE(U.profile_photo_path,'') AS profile_photo_path,
                         COALESCE(V.thumbnail_path,'') AS thumbnail_path
                     FROM
                         videos AS V
@@ -139,6 +142,7 @@ public class VideoModel {
         v.setCreatedAt(res.getTimestamp("created_at"));
         v.setUpdatedAt(res.getTimestamp("updated_at"));
         v.setThumbnailPath(res.getString("thumbnail_path"));
+        v.setUserProfilePhotoPath(res.getString("profile_photo_path"));
         increaseVideoView(id);
         return v;
     }
@@ -264,6 +268,7 @@ public class VideoModel {
                     U.id AS user_id,
                     V.view_count,
                     COALESCE(V.thumbnail_path,'') AS thumbnail_path,
+                        COALESCE(U.profile_photo_path,'') AS profile_photo_path,
                     V.created_at
                 FROM
                     videos AS V
@@ -288,6 +293,7 @@ public class VideoModel {
             v.setUserId(res.getInt("user_id"));
             v.setViewsCount(res.getInt("view_count"));
             v.setThumbnailPath(res.getString("thumbnail_path"));
+            v.setUserProfilePhotoPath(res.getString("profile_photo_path"));
             v.setCreatedAt(res.getTimestamp("created_at"));
             videos.add(v);
         }
@@ -306,12 +312,13 @@ public class VideoModel {
                         U.id AS user_id,
                         V.view_count,
                         COALESCE(V.thumbnail_path,'') AS thumbnail_path,
+                        COALESCE(U.profile_photo_path,'') AS profile_photo_path,
                         V.created_at
                     FROM
                         videos AS V
                     JOIN users AS U ON U.id = user_id
                     WHERE V.is_private=FALSE
-                    ORDER BY created_at
+                    ORDER BY created_at DESC
                     LIMIT ? OFFSET ?;
                 """;
         ArrayList<Video> videos = new ArrayList<>();
@@ -327,6 +334,7 @@ public class VideoModel {
             v.setUserId(res.getInt("user_id"));
             v.setViewsCount(res.getInt("view_count"));
             v.setThumbnailPath(res.getString("thumbnail_path"));
+            v.setUserProfilePhotoPath(res.getString("profile_photo_path"));
             v.setCreatedAt(res.getTimestamp("created_at"));
             videos.add(v);
         }
@@ -346,6 +354,7 @@ public class VideoModel {
                         U.id AS user_id,
                         V.view_count,
                         COALESCE(V.thumbnail_path,'') AS thumbnail_path,
+                        COALESCE(U.profile_photo_path,'') AS profile_photo_path,
                         V.created_at
                     FROM
                         videos AS V
@@ -368,6 +377,7 @@ public class VideoModel {
             v.setUserId(res.getInt("user_id"));
             v.setViewsCount(res.getInt("view_count"));
             v.setThumbnailPath(res.getString("thumbnail_path"));
+            v.setUserProfilePhotoPath(res.getString("profile_photo_path"));
             v.setCreatedAt(res.getTimestamp("created_at"));
             videos.add(v);
         }
@@ -387,6 +397,7 @@ public class VideoModel {
                         U.id AS user_id,
                         V.view_count,
                         COALESCE(V.thumbnail_path,'') AS thumbnail_path,
+                        COALESCE(U.profile_photo_path,'') AS profile_photo_path,
                         V.created_at
                     FROM
                         videos AS V
@@ -421,6 +432,7 @@ public class VideoModel {
             v.setUserId(res.getInt("user_id"));
             v.setViewsCount(res.getInt("view_count"));
             v.setThumbnailPath(res.getString("thumbnail_path"));
+            v.setUserProfilePhotoPath(res.getString("profile_photo_path"));
             v.setCreatedAt(res.getTimestamp("created_at"));
             videos.add(v);
         }
@@ -486,7 +498,11 @@ public class VideoModel {
             throw new ModelError("failed to set like/dislike");
         }
         if (isLike){
-            PlaylistModel.addVideoToLikeList(videoId,userId);
+            try {
+                PlaylistModel.addVideoToLikeList(videoId,userId);
+            } catch (Exception e){
+                System.out.println(e);
+            }
         }
         NotificationModel.Notify.newVideoLike(videoId, userId, isLike);
     }
@@ -691,6 +707,7 @@ public class VideoModel {
                     PV.video_id,
                     PV.created_at AS added_at,
                     U1.username AS video_creator,
+                    U1.id AS video_creator_id,
                     COALESCE(V.thumbnail_path,'') AS thumbnail_path,
                     V.title,
                     V.created_at,
@@ -726,6 +743,7 @@ public class VideoModel {
             p.setVideoId(res.getInt("video_id"));
             p.setAddedAt(res.getTimestamp("added_at"));
             p.setVideoCreator(res.getString("video_creator"));
+            p.setVideoCreatorUserId(res.getInt("video_creator_id"));
             p.setVideoThumbnail(res.getString("thumbnail_path"));
             p.setVideoTitle(res.getString("title"));
             p.setVideoCreatedAt(res.getTimestamp("created_at"));

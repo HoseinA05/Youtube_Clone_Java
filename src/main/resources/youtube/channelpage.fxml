@@ -45,10 +45,10 @@
                 </Button>
             </HBox>
 
-            <!-- Three dots -->
-            <Button id="threeDotsBtn" styleClass="menuBtn" onAction="#toggleTheme">
+            <!-- Darkmode -->
+            <Button id="darkmode" styleClass="menuBtn" onAction="#toggleTheme">
                 <graphic>
-                    <SVGPath content="M12 16.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5.67-1.5 1.5-1.5zM10.5 12c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5-1.5.67-1.5 1.5zm0-6c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5-1.5.67-1.5 1.5z" fill="black" />
+                    <SVGPath content="M12 22C10.93 22 9.86998 21.83 8.83998 21.48L7.41998 21.01L8.83998 20.54C12.53 19.31 15 15.88 15 12C15 8.12 12.53 4.69 8.83998 3.47L7.41998 2.99L8.83998 2.52C9.86998 2.17 10.93 2 12 2C17.51 2 22 6.49 22 12C22 17.51 17.51 22 12 22ZM10.58 20.89C11.05 20.96 11.53 21 12 21C16.96 21 21 16.96 21 12C21 7.04 16.96 3 12 3C11.53 3 11.05 3.04 10.58 3.11C13.88 4.81 16 8.21 16 12C16 15.79 13.88 19.19 10.58 20.89Z" />
                 </graphic>
             </Button>
 
@@ -67,7 +67,7 @@
         <AnchorPane>
 
             <!-- Maximized Left Menu -->
-            <VBox fx:id="leftPanelMax" styleClass="leftPanelContainer" AnchorPane.bottomAnchor="0" AnchorPane.topAnchor="0">
+            <VBox fx:id="leftPanelMax" styleClass="leftPanelContainer" visible="false" managed="false" AnchorPane.bottomAnchor="0" AnchorPane.topAnchor="0">
 
                 <HBox>
                     <Button graphicTextGap="20" maxWidth="Infinity" styleClass="menuBtn, selected" text="Home" HBox.hgrow="ALWAYS">
@@ -86,7 +86,7 @@
             </VBox>
 
             <!-- Minimized Left Menu -->
-            <VBox fx:id="leftPanelMin" styleClass="leftPanelContainer" prefWidth="70" AnchorPane.bottomAnchor="0" AnchorPane.topAnchor="0">
+            <VBox fx:id="leftPanelMin" styleClass="leftPanelContainer"  prefWidth="70" AnchorPane.bottomAnchor="0" AnchorPane.topAnchor="0">
 
                 <HBox>
                     <Button graphicTextGap="10" maxWidth="Infinity" styleClass="menuBtnMin, selected" text="Home" HBox.hgrow="ALWAYS" contentDisplay="TOP" alignment="CENTER">
@@ -114,7 +114,7 @@
                 <ImageViewPane>
                     <imageView>
                         <ImageView fx:id="channelImage" fitHeight="160" pickOnBounds="true" preserveRatio="false">
-                            <Image url="@testImg.jpg" />
+<!--                            <Image url="@testImg.jpg" />-->
                         </ImageView>
                     </imageView>
                 </ImageViewPane>
@@ -127,83 +127,38 @@
 
                     <!-- Channel Info -->
                     <VBox spacing="4">
-                        <Label styleClass="channelName" text="Hossein--00" prefWidth="300"/>
-                        <Label styleClass="channelInfo" text="\@Hossein--00 • 15.2M subscribers • 5.3K videos"/>
-                        <Label styleClass="channelInfo" text="Some text for the about section..."/>
-                        <Button id="subscribeBtn" text="Subscribe"/>
+                        <Label styleClass="channelName" fx:id="channelName" text="" prefWidth="300"/>
+                        <Label styleClass="channelInfo" fx:id="channelInfo" text=""/>
+                        <Label styleClass="channelInfo" fx:id="channelAboutMe" text=""/>
+                        <Button fx:id="subscribeBtn" styleClass="subscribeBtn" text="Subscribe" onAction="#subscribeBtnHandler"/>
                     </VBox>
                 </HBox>
 
                 <!-- Channel Items (e.g: Videos, Home, About, ...) -->
                 <HBox styleClass="channelItemsContainer" spacing="25">
-                    <Button styleClass="channelItemBtn" text="Home"/>
-                    <Button styleClass="channelItemBtn, channelItemSelected" text="Videos"/>
-                    <Button styleClass="channelItemBtn" text="About"/>
+                    <Button styleClass="channelItemBtn" text="Videos" fx:id="videosSectionBtn" onAction="#videoSectionHandler" />
+                    <Button styleClass="channelItemBtn" text="Playlists" fx:id="playlistsSectionBtn" onAction="#playlistSectionHandler"/>
+                    <Button styleClass="channelItemBtn" text="About" fx:id="aboutSectionBtn" onAction="#aboutSectionHandler"/>
                 </HBox>
 
                 <!-- Channel Items ( Videos ) -->
-                <TilePane hgap="15" vgap="20">
+                <TilePane fx:id="videoContainer" hgap="15" vgap="20">
 
                     <!-- Video Item -->
-                    <VBox id="videoBox" spacing="4" styleClass="videoBox" prefWidth="250">
+<!--                    <VBox styleClass="videoBox">-->
 
-                        <ImageView fx:id="videoImg" fitWidth="250" fitHeight="130">
-                            <Image url="@testImg.jpg" />
-                        </ImageView>
+<!--                        <ImageView fx:id="videoImg" fitWidth="250" fitHeight="130">-->
+<!--                            <Image url="@testImg.jpg" />-->
+<!--                        </ImageView>-->
 
-                        <Label styleClass="videoTitle" wrapText="true" text="Video Title Video Title Video Title Video Title Video Title" />
-                        <Label styleClass="videoInfo" text="1M views • 1 year ago" />
+<!--                        <Label styleClass="videoTitle" wrapText="true" text="Video Title Video Title Video Title Video Title Video Title" />-->
+<!--                        <Label styleClass="videoInfo" text="1M views • 1 year ago" />-->
 
-                    </VBox>
+<!--                    </VBox>-->
 
-                    <!-- Video Item -->
-                    <VBox id="videoBox" spacing="4" styleClass="videoBox" prefWidth="250">
-
-                        <ImageView fitWidth="250" fitHeight="130">
-                            <Image url="@testImg.jpg" />
-                        </ImageView>
-
-                        <Label styleClass="videoTitle" wrapText="true" text="Video Title Video Title Video Title Video Title Video Title" />
-                        <Label styleClass="videoInfo" text="1M views • 1 year ago" />
-
-                    </VBox>
-
-                    <!-- Video Item -->
-                    <VBox id="videoBox" spacing="4" styleClass="videoBox" prefWidth="250">
-
-                        <ImageView fitWidth="250" fitHeight="130">
-                            <Image url="@testImg.jpg" />
-                        </ImageView>
-
-                        <Label styleClass="videoTitle" wrapText="true" text="Video Title Video Title Video Title Video Title Video Title" />
-                        <Label styleClass="videoInfo" text="1M views • 1 year ago" />
-
-                    </VBox>
-
-                    <!-- Video Item -->
-                    <VBox id="videoBox" spacing="4" styleClass="videoBox" prefWidth="250">
-
-                        <ImageView fitWidth="250" fitHeight="130">
-                            <Image url="@testImg.jpg" />
-                        </ImageView>
-
-                        <Label styleClass="videoTitle" wrapText="true" text="Video Title Video Title Video Title Video Title Video Title" />
-                        <Label styleClass="videoInfo" text="1M views • 1 year ago" />
-
-                    </VBox>
-
-                    <!-- Video Item -->
-                    <VBox id="videoBox" spacing="4" styleClass="videoBox" prefWidth="250">
-
-                        <ImageView fitWidth="250" fitHeight="130">
-                            <Image url="@testImg.jpg" />
-                        </ImageView>
-
-                        <Label styleClass="videoTitle" wrapText="true" text="Video Title Video Title Video Title Video Title Video Title" />
-                        <Label styleClass="videoInfo" text="1M views • 1 year ago" />
-
-                    </VBox>
                 </TilePane>
+
+                <Button fx:id="loadmoreBtn" styleClass="subscribeBtn, loadmoreBtn"  text="Load More" onAction="#loadmoreHandler"/>
             </VBox>
 
         </ScrollPane>

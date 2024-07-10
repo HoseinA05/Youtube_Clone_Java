@@ -1,0 +1,124 @@
+* {
+-fx-focus-color: transparent;
+-fx-border-style: none;
+}
+
+// global
+.panelTitle{
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: color1;
+}
+.btn{
+    -fx-padding: 5px 10px;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+// Account Info Panel
+.accountInfoLabel{
+    -fx-font-size: 13px;
+    -fx-text-fill: color1;
+}
+.img:hover{
+    -fx-opacity: 0.6;
+}
+.accountInfoTF{
+    -fx-border-width: 2px;
+    -fx-border-color: searchBorderColor;
+    -fx-background-color: searchBG;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+    -fx-padding: 5px 10px;
+    -fx-pref-height: 20px;
+    -fx-pref-width: 200px;
+    -fx-font-size: 14px;
+    -fx-text-fill: color1;
+}
+.accountInfoBtn{
+    -fx-background-color: green;
+    -fx-text-fill: white;
+}
+
+// Content Panel
+.contentPanelItemsContainer{
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-color: color2;
+}
+.contentPanelItemBtn{
+    -fx-background-color: transparent;
+    -fx-text-fill: color2;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 0;
+}
+.contentPanelItemBtn:hover{
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-color: color2;
+}
+.contentPanelItemSelected{
+    -fx-text-fill: color1;
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-color: color1;
+}
+.contentPanelItemSelected:hover{
+    -fx-border-color: color1;
+}
+#uploadBtn{
+    -fx-background-color: green;
+    -fx-text-fill: white;
+}
+
+// Playlist section
+#videosContentSP, #videosContentSP > .viewport{
+    -fx-background-color: bg1;
+    -fx-padding: 25px;
+}
+.videoTitle{
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: color1;
+}
+.videoInfo{
+    -fx-text-fill: color2;
+    -fx-font-size: 12px;
+}
+
+// create / edit Video
+.editTF{
+    -fx-border-width: 2px;
+    -fx-border-color: searchBorderColor;
+    -fx-background-color: searchBG;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+    -fx-padding: 10px;
+    -fx-font-size: 15px;
+    -fx-text-fill: color1;
+}
+.editTF .scroll-pane {
+    -fx-hbar-policy: never;
+}
+.editTF:focused .content {
+    -fx-background-color:  searchBG;
+}
+.editTF .scroll-pane .content{
+    -fx-background-color: searchBG;
+    -fx-border-width: 0;
+    -fx-text-fill: color1;
+    -fx-pref-height: 300px;
+}
+.tagBtn{
+    -fx-padding: 10px;
+    -fx-background-radius: 15px;
+    -fx-background-color: bg1;
+    -fx-text-fill: color1;
+    -fx-font-size: 12px;
+    -fx-effect: dropshadow(gaussian, searchBorderColor, 5, 0.5, 0, 0)
+}
+.tagBtn:hover{
+    -fx-background-color: hoverBG;
+}
+.tagBtn > SVGPath{
+    -fx-fill: transparent;
+    -fx-stroke: svgColor;
+    -fx-stroke-type: inside;
+}

@@ -1,4 +1,5 @@
-Button {
+
+Button,ImageView,.userLabel {
     -fx-cursor: hand;
 }
 
@@ -12,14 +13,24 @@ Button {
     -fx-font-size: 12px;
 }
 
-#subscribeBtn{
-    -fx-background-color: subscribeBG;
+.subscribeBtn{
     -fx-font-size: 14px;
     -fx-font-weight: bold;
     -fx-alignment: CENTER;
     -fx-background-radius: 25px;
-    -fx-text-fill: subscribeTC;
     -fx-padding: 8px 15px;
+}
+.subBtn{
+    -fx-background-color: subscribeBG;
+    -fx-text-fill: subscribeTC;
+}
+.unsubBtn{
+    -fx-background-color: green;
+    -fx-text-fill: white;
+}
+.loadmoreBtn{
+    -fx-background-color: subscribeBG;
+    -fx-text-fill: subscribeTC;
 }
 
 .channelItemsContainer{
@@ -51,8 +62,10 @@ Button {
     -fx-background-color: bg1;
 }
 
-#videoBox{
+.videoBox{
     -fx-background-color: transparent;
+    -fx-spacing: 4;
+    -fx-pref-width: 250px;
 }
 .videoTitle{
     -fx-font-size: 13px;

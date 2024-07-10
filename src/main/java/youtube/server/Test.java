@@ -170,12 +170,12 @@ public class Test {
             // )));
 
             // PUT_VIDEO_TAG
-            requestJson.put("type", RequestTypes.PUT_VIDEO_TAG.ordinal());
-            requestJson.put("body", new JSONObject(Map.ofEntries(
-                    Map.entry("tagName","asdfasdfdsfa"),
-                    Map.entry("video_id",1),
-                    Map.entry("user_id",1)
-            )));
+            // requestJson.put("type", RequestTypes.PUT_VIDEO_TAG.ordinal());
+            // requestJson.put("body", new JSONObject(Map.ofEntries(
+            //         Map.entry("tagName","asdfasdfdsfa"),
+            //         Map.entry("video_id",1),
+            //         Map.entry("user_id",1)
+            // )));
 
             // DELETE_VIDEO_TAG
             // requestJson.put("type", RequestTypes.DELETE_VIDEO_TAG.ordinal());

@@ -1,20 +1,24 @@
 package youtube.server;
 
 import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.net.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Server {
 
-    public static final int PORT = 1234;
+    public static final int PORT = 2000;
     private static final ExecutorService pool = Executors.newFixedThreadPool(4);
 
     public static void main(String[] args) {
         ServerSocket server = null;
         try {
+
             server = new ServerSocket(PORT);
+            InetAddress inetAddress = InetAddress.getByName("localhost");
+            // SocketAddress socketAddress = new InetSocketAddress(inetAddress, PORT);
+            // server.setKeepAlive(true);
+
             System.out.println("[SERVER] Server started. Waiting for client connections...");
 
             while (!server.isClosed()){

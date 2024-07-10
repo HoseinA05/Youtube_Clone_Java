@@ -36,8 +36,8 @@
     <center>
         <VBox id="formBox">
             <HBox styleClass="inputBox">
-                <Label text="Name: " />
-                <TextField fx:id="nameInput"/>
+                <Label text="Email: " />
+                <TextField fx:id="emailInput"/>
             </HBox>
 
             <HBox styleClass="inputBox" >
@@ -52,9 +52,12 @@
 
             <HBox styleClass="btnsContainer">
                 <Button id="signinBtn" text="Already have an account? Sign in." onAction="#signinBtnHandler"/>
-                <Button id="signupBtn" text="Sign Up"/>
+                <Button id="signupBtn" text="Sign Up" onAction="#signupBtnHandler"/>
             </HBox>
         </VBox>
     </center>
 
+    <bottom>
+        <Label fx:id="toastText" styleClass="toastText"/>
+    </bottom>
 </BorderPane>

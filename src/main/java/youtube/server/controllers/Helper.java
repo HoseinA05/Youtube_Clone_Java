@@ -8,12 +8,17 @@ import java.util.HashMap;
 
 public class Helper {
     public static String errorToJson(Exception e) {
+        JSONObject response = new JSONObject();
         if (e instanceof JSONException) {
-            String m = "Invalid json error:" + e.getCause();
-            return String.format("{\"error\":\"%s\"}", m);
+            String m = "Invalid json error:" + e.getMessage().replaceAll("\"","`");
+            response.put("error",m);
+            // return String.format("{\"error\":\"%s\"}", m);
+            return response.toString();
         }
         if (e instanceof ModelError) {
-            return String.format("{\"error\":\"%s\"}", e.getMessage());
+            String m = String.format("{\"error\":\"%s\"}", e.getMessage().replaceAll("\"","`"));
+            response.put("error",m);
+            return response.toString();
         }
         System.out.println("server error:");
         System.out.println(e.getMessage());

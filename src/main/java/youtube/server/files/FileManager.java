@@ -24,6 +24,7 @@ public class FileManager {
         var out = new FileOutputStream(file);
         out.write(photoContent);
         out.close();
+        System.out.println(path);
         // creating file
         return path;
     }
@@ -45,9 +46,9 @@ public class FileManager {
         if (file.exists()) {
             throw new RuntimeException("file path already exists!");
         }
-        var in = new FileOutputStream(file);
-        in.write(videoContent);
-        in.close();
+        var out = new FileOutputStream(file);
+        out.write(videoContent);
+        out.close();
         // creating file
         return path;
     }
@@ -69,11 +70,12 @@ public class FileManager {
         if (!file.exists()) {
             throw new ModelError("photo not exist");
         }
+        System.out.println(path);
         var in = new FileInputStream(file);
         byte[] c = in.readAllBytes();
         // in.write(videoContent);
         in.close();
-        return new String(c);
+        return Base64.getEncoder().encodeToString(c);
     }
 
     public String GET_VIDEO(JSONObject body) throws Exception {
@@ -87,6 +89,7 @@ public class FileManager {
         byte[] c = in.readAllBytes();
         // in.write(videoContent);
         in.close();
-        return new String(c);
+        // return new String(c);
+        return Base64.getEncoder().encodeToString(c);
     }
 }

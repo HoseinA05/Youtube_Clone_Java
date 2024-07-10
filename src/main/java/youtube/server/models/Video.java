@@ -15,6 +15,7 @@ public class Video {
     private boolean isPrivate;
     /// extra columns
     private String userName;
+    private String userProfilePhotoPath;
     private String tags;  // comma seperated
     private int userSubscribesCount;
     private int likesCount;
@@ -189,5 +190,13 @@ public class Video {
                 ", currentUserLike=" + currentUserLike +
                 ", isCurrentUserSubscribed=" + isCurrentUserSubscribed +
                 '}';
+    }
+
+    public String getUserProfilePhotoPath() {
+        return userProfilePhotoPath;
+    }
+
+    public void setUserProfilePhotoPath(String userProfilePhotoPath) {
+        this.userProfilePhotoPath = userProfilePhotoPath;
     }
 }

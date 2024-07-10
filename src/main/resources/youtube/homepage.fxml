@@ -47,19 +47,26 @@
                 </Button>
             </HBox>
 
-            <!-- Three dots -->
-            <Button id="threeDotsBtn" styleClass="menuBtn" onAction="#toggleTheme">
+            <!-- Darkmode -->
+            <Button id="darkmode" styleClass="menuBtn" onAction="#toggleTheme">
                 <graphic>
-                    <SVGPath content="M12 16.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5.67-1.5 1.5-1.5zM10.5 12c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5-1.5.67-1.5 1.5zm0-6c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5-1.5.67-1.5 1.5z" fill="black" />
+                    <SVGPath content="M12 22C10.93 22 9.86998 21.83 8.83998 21.48L7.41998 21.01L8.83998 20.54C12.53 19.31 15 15.88 15 12C15 8.12 12.53 4.69 8.83998 3.47L7.41998 2.99L8.83998 2.52C9.86998 2.17 10.93 2 12 2C17.51 2 22 6.49 22 12C22 17.51 17.51 22 12 22ZM10.58 20.89C11.05 20.96 11.53 21 12 21C16.96 21 21 16.96 21 12C21 7.04 16.96 3 12 3C11.53 3 11.05 3.04 10.58 3.11C13.88 4.81 16 8.21 16 12C16 15.79 13.88 19.19 10.58 20.89Z" />
                 </graphic>
             </Button>
 
             <!-- Sign in -->
-            <Button id="signInBtn" graphicTextGap="10" text="Sign in" onAction="#signinBtnHandler">
+            <Button fx:id="signinBtn" id="signInBtn" graphicTextGap="10" text="Sign in" onAction="#signinBtnHandler">
                 <graphic>
                     <SVGPath fill="#3ea6ff" content="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 1c4.96 0 9 4.04 9 9 0 1.42-.34 2.76-.93 3.96-1.53-1.72-3.98-2.89-7.38-3.03A3.996 3.996 0 0016 9c0-2.21-1.79-4-4-4S8 6.79 8 9c0 1.97 1.43 3.6 3.31 3.93-3.4.14-5.85 1.31-7.38 3.03C3.34 14.76 3 13.42 3 12c0-4.96 4.04-9 9-9zM9 9c0-1.65 1.35-3 3-3s3 1.35 3 3-1.35 3-3 3-3-1.35-3-3zm3 12c-3.16 0-5.94-1.64-7.55-4.12C6.01 14.93 8.61 13.9 12 13.9c3.39 0 5.99 1.03 7.55 2.98C17.94 19.36 15.16 21 12 21z"/>
                 </graphic>
             </Button>
+
+            <!-- Dashboard button -->
+            <HBox fx:id="dashboardContainer" alignment="CENTER" visible="false" managed="false">
+                <ImageView fx:id="dashboardImg" fitWidth="40" fitHeight="40" preserveRatio="false"/>
+
+                <Button fx:id="dashboardBtn" alignment="CENTER" styleClass="dashboardBtn" text="username..." onAction="#dashboardBtnHandler" />
+            </HBox>
 
         </HBox>
     </top>
@@ -79,7 +86,7 @@
                     </Button>
                 </HBox>
 
-                <Button graphicTextGap="20" styleClass="menuBtn" text="Subscriptions">
+                <Button graphicTextGap="20" maxWidth="Infinity" styleClass="menuBtn" text="Subscriptions">
                     <graphic>
                         <SVGPath content="M20 7H4V6h16v1zm2 2v12H2V9h20zm-7 6-5-3v6l5-3zm2-12H7v1h10V3z" />
                     </graphic>
@@ -88,7 +95,7 @@
             </VBox>
 
             <!-- Minimized Left Menu -->
-            <VBox fx:id="leftPanelMin" styleClass="leftPanelContainer" prefWidth="70" AnchorPane.bottomAnchor="0" AnchorPane.topAnchor="0">
+            <VBox fx:id="leftPanelMin" styleClass="leftPanelContainer" prefWidth="70" visible="false" managed="false" AnchorPane.bottomAnchor="0" AnchorPane.topAnchor="0">
 
                 <HBox>
                     <Button graphicTextGap="10" maxWidth="Infinity" styleClass="menuBtnMin, selected" text="Home" HBox.hgrow="ALWAYS" contentDisplay="TOP" alignment="CENTER">
@@ -106,42 +113,51 @@
 
             </VBox>
 
-            <ProgressIndicator fx:id="progress" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="40" prefWidth="50" prefHeight="50"/>
+            <ProgressIndicator fx:id="progress" visible="false" AnchorPane.bottomAnchor="20" prefWidth="70" prefHeight="50"/>
         </AnchorPane>
     </left>
 
     <!-- Center content for videos -->
     <center>
         <ScrollPane id="scrollpane" fitToWidth="true">
-            <TilePane fx:id="tilePane" hgap="35" prefColumns="3" style="-fx-padding: 20;" vgap="30">
 
-                <!-- Video Item -->
-                <VBox styleClass="videoBox" onMouseClicked="#videoClickHandler">
+            <VBox fx:id="videosContainer">
+                    <!-- default container -->
+<!--                <VBox>-->
+<!--                    <Label text="Trending" styleClass="videosTitle" />-->
 
-                    <ImageView fx:id="img" fitWidth="320" fitHeight="180" preserveRatio="true">
-                        <Image url="@testImg.jpg" />
-                    </ImageView>
+<!--                    <TilePane fx:id="tilePane" styleClass="tilepane">-->
 
-                    <HBox spacing="10">
+<!--                        &lt;!&ndash; Video Item &ndash;&gt;-->
+<!--                        <VBox styleClass="videoBox" >-->
 
-                        <ImageView fx:id="profImg" fitWidth="40" fitHeight="40" onMouseClicked="#channelpageHandler">
-                            <Image url="@testImg.jpg" />
-                            <HBox.margin>
-                                <Insets top="5.0" />
-                            </HBox.margin>
-                        </ImageView>
+<!--                            <ImageView fx:id="img" fitWidth="320" fitHeight="180" preserveRatio="true">-->
+<!--                                <Image url="@testImg.jpg" />-->
+<!--                            </ImageView>-->
 
-                        <VBox>
-                            <Label fx:id="videoTitle" styleClass="videoTitle" text="Video Title Video Title Video Title Video Title Video Title" />
-                            <Label styleClass="videoInfo" text="The Hossein" onMouseClicked="#channelpageHandler"/>
-                            <Label styleClass="videoInfo" text="1M views • 1 year ago" />
-                        </VBox>
+<!--                            <HBox spacing="10">-->
 
-                    </HBox>
+<!--                                <ImageView fx:id="profImg" fitWidth="40" fitHeight="40" >-->
+<!--                                    <Image url="@testImg.jpg" />-->
+<!--                                    <HBox.margin>-->
+<!--                                        <Insets top="5.0" />-->
+<!--                                    </HBox.margin>-->
+<!--                                </ImageView>-->
 
-                </VBox>
+<!--                                <VBox>-->
+<!--                                    <Label fx:id="videoTitle" styleClass="videoTitle" text="Video Title Video Title Video Title Video Title Video Title" />-->
+<!--                                    <Label styleClass="videoInfo" text="The Hossein"/>-->
+<!--                                    <Label styleClass="videoInfo" text="1M views • 1 year ago" />-->
+<!--                                </VBox>-->
 
-            </TilePane>
+<!--                            </HBox>-->
+
+<!--                        </VBox>-->
+
+<!--                    </TilePane>-->
+<!--                </VBox>-->
+            </VBox>
+
         </ScrollPane>
     </center>
 
